@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace Stu
 {
-    public partial class main : Form
+    public partial class CreateUser : Form
     {
-        public main()
+        public CreateUser()
         {
             InitializeComponent();
-        }
-
-        private void main_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Stu.Data;
 using System;
 using System.Windows.Forms;
 
@@ -6,76 +7,68 @@ namespace Stu
 {
     public partial class frmLogin : Form
     {
-        // رشته اتصال به دیتابیس
-        private const string ConnectionString =
-            "Data Source=.\\SQL2022;Initial Catalog=School;User ID=sa;Password=MDev2025!!;TrustServerCertificate=True;";
-
         public frmLogin()
         {
             InitializeComponent();
         }
-
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            string userName = txtUserName.Text.Trim();
-            string password = txtPassword.Text;
+            string username = txtUser.Text.Trim();
+            string password = txtPass.Text.Trim();
 
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("نام کاربری و رمز عبور را وارد کنید", "خطا",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("لطفاً نام کاربری و رمز عبور را وارد کنید!", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            bool isValidUser = ValidateUser(userName, password);
-
-            if (isValidUser)
-            {
-                MessageBox.Show("ورود موفقیت‌آمیز بود!", "موفقیت",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                main mainForm = new main();
-                mainForm.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("نام کاربری یا رمز عبور نادرست است", "خطا",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private bool ValidateUser(string userName, string password)
-        {
-            string query = "SELECT COUNT(*) FROM Users WHERE Username = @UserName AND Password = @Password";
-
             try
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                using (SqlConnection connection = DatabaseHelper.GetConnection())
                 {
                     connection.Open();
 
+                    string query = @"SELECT RoleId FROM Users WHERE Username = @Username AND Password = @Password";
+
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@UserName", userName);
+                        command.Parameters.AddWithValue("@Username", username);
                         command.Parameters.AddWithValue("@Password", password);
 
-                        int count = (int)command.ExecuteScalar();
-                        return count > 0;
+                        var result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            int roleId = Convert.ToInt32(result);
+
+                            MessageBox.Show("ورود موفق!", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            Form nextForm = null;
+
+                            if (roleId == 1)
+                                nextForm = new CreateUser();
+                            else if (roleId == 2)
+                                nextForm = new main();
+                            else
+                            {
+                                MessageBox.Show("نقش کاربری تعریف نشده است.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+
+                            nextForm.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("نام کاربری یا رمز عبور اشتباه است!", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show($"خطا در اتصال به دیتابیس:\n{ex.Message}", "خطا",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                MessageBox.Show($"خطا در اتصال به دیتابیس: {ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
     }
 }
