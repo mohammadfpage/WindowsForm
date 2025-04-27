@@ -10,19 +10,24 @@ using System.Windows.Forms;
 
 namespace Stu
 {
-    public partial class main : Form
+    public partial class Search : Form
     {
-        public main()
+        public Search()
         {
             InitializeComponent();
         }
 
-        private void main_Load(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

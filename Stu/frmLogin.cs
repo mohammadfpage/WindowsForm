@@ -48,7 +48,7 @@ namespace Stu
                             if (roleId == 1)
                                 nextForm = new CreateUser();
                             else if (roleId == 2)
-                                nextForm = new main();
+                                nextForm = new Search();
                             else
                             {
                                 MessageBox.Show("نقش کاربری تعریف نشده است.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);

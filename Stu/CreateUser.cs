@@ -10,11 +10,20 @@ using System.Windows.Forms;
 
 namespace Stu
 {
+    // edit
+    // create
+    // delete
+ 
     public partial class CreateUser : Form
     {
         public CreateUser()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
