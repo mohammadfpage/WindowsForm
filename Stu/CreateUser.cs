@@ -18,8 +18,10 @@ namespace Stu
             string firstName = textBox1.Text.Trim();
             string lastName = textBox2.Text.Trim();
             string entranceYearText = comboBox1.SelectedItem?.ToString();
+            string levelStudent = comboBox2.SelectedItem?.ToString(); // اضافه کردن انتخاب پایه تحصیلی
 
-            if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName) && string.IsNullOrEmpty(entranceYearText))
+            if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName) &&
+                string.IsNullOrEmpty(entranceYearText) && string.IsNullOrEmpty(levelStudent))
             {
                 MessageBox.Show("لطفاً حداقل یکی از فیلدها را وارد یا انتخاب کنید.", "خطا",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -44,7 +46,7 @@ namespace Stu
                     }
                 }
 
-                DataTable result = SearchStudents(firstName, lastName, entranceYear);
+                DataTable result = SearchStudents(firstName, lastName, entranceYear, levelStudent);
 
                 if (result.Rows.Count > 0)
                 {
@@ -55,7 +57,7 @@ namespace Stu
                 else
                 {
                     dataGridView1.Visible = false;
-                    MessageBox.Show("دانشجویی با مشخصات وارد شده یافت نشد.", "نتیجه جستجو",
+                    MessageBox.Show("دانش‌آموزی با مشخصات وارد شده یافت نشد.", "نتیجه جستجو",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -65,7 +67,8 @@ namespace Stu
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private DataTable SearchStudents(string firstName, string lastName, int? entranceYear)
+
+        private DataTable SearchStudents(string firstName, string lastName, int? entranceYear, string levelStudent)
         {
             DataTable dataTable = new DataTable();
 
@@ -74,32 +77,35 @@ namespace Stu
                 connection.Open();
 
                 string query = @"
-        SELECT 
-            s.StudentId, 
-            s.FirstName, 
-            s.LastName, 
-            s.SchoolYear,
-            sg1.Name AS Skill1, 
-            sg2.Name AS Skill2, 
-            sg3.Name AS Skill3
-        FROM 
-            Student s
-        LEFT JOIN 
-            SkillGroups sg1 ON s.Skill1 = sg1.SkillGroupId
-        LEFT JOIN 
-            SkillGroups sg2 ON s.Skill2 = sg2.SkillGroupId
-        LEFT JOIN 
-            SkillGroups sg3 ON s.Skill3 = sg3.SkillGroupId
-        WHERE 
-            (@FirstName = '' OR s.FirstName LIKE '%' + @FirstName + '%')
-            AND (@LastName = '' OR s.LastName LIKE '%' + @LastName + '%')
-            AND (@EntranceYear IS NULL OR s.SchoolYear = @EntranceYear)";
+                    SELECT 
+                        s.StudentId, 
+                        s.FirstName, 
+                        s.LastName, 
+                        s.SchoolYear,
+                        s.LevelStudent, -- اضافه شده
+                        sg1.Name AS Skill1, 
+                        sg2.Name AS Skill2, 
+                        sg3.Name AS Skill3
+                    FROM 
+                        Student s
+                    LEFT JOIN 
+                        SkillGroups sg1 ON s.Skill1 = sg1.SkillGroupId
+                    LEFT JOIN 
+                        SkillGroups sg2 ON s.Skill2 = sg2.SkillGroupId
+                    LEFT JOIN 
+                        SkillGroups sg3 ON s.Skill3 = sg3.SkillGroupId
+                    WHERE 
+                        (@FirstName = '' OR s.FirstName LIKE '%' + @FirstName + '%')
+                        AND (@LastName = '' OR s.LastName LIKE '%' + @LastName + '%')
+                        AND (@EntranceYear IS NULL OR s.SchoolYear = @EntranceYear)
+                        AND (@LevelStudent = '' OR s.LevelStudent = @LevelStudent)"; 
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@FirstName", string.IsNullOrEmpty(firstName) ? "" : firstName);
                     command.Parameters.AddWithValue("@LastName", string.IsNullOrEmpty(lastName) ? "" : lastName);
                     command.Parameters.AddWithValue("@EntranceYear", entranceYear.HasValue ? (object)entranceYear.Value : DBNull.Value);
+                    command.Parameters.AddWithValue("@LevelStudent", string.IsNullOrEmpty(levelStudent) ? "" : levelStudent);
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
@@ -110,12 +116,14 @@ namespace Stu
 
             return dataTable;
         }
+
         private void SetGridHeaders()
         {
-            dataGridView1.Columns["StudentId"].HeaderText = "کد دانشجو";
+            dataGridView1.Columns["StudentId"].HeaderText = "کد دانش‌آموز";
             dataGridView1.Columns["FirstName"].HeaderText = "نام";
             dataGridView1.Columns["LastName"].HeaderText = "نام خانوادگی";
             dataGridView1.Columns["SchoolYear"].HeaderText = "سال ورود";
+            dataGridView1.Columns["LevelStudent"].HeaderText = "پایه تحصیلی"; // اضافه شده
             dataGridView1.Columns["Skill1"].HeaderText = "مهارت 1";
             dataGridView1.Columns["Skill2"].HeaderText = "مهارت 2";
             dataGridView1.Columns["Skill3"].HeaderText = "مهارت 3";
@@ -137,6 +145,7 @@ namespace Stu
                 }
             }
         }
+
         private void EditStudent(int studentId)
         {
             frmEdit editForm = new frmEdit(studentId);
@@ -147,7 +156,7 @@ namespace Stu
 
         private void DeleteStudent(int studentId)
         {
-            var result = MessageBox.Show("آیا از حذف این دانشجو مطمئن هستید؟", "حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var result = MessageBox.Show("آیا از حذف این دانش‌آموز مطمئن هستید؟", "حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 try
@@ -164,16 +173,17 @@ namespace Stu
                         }
                     }
 
-                    MessageBox.Show("دانشجو با موفقیت حذف شد.", "حذف موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("دانش‌آموز با موفقیت حذف شد.", "حذف موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     button1_Click(null, null);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"خطا در حذف دانشجو:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"خطا در حذف دانش‌آموز:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             frmCreate createForm = new frmCreate();
@@ -182,5 +192,9 @@ namespace Stu
             button1_Click(null, null);
         }
 
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // اینجا نیازی به کدنویسی اضافی نیست چون مقدارش در button1 گرفته می‌شود
+        }
     }
 }

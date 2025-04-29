@@ -66,7 +66,7 @@ namespace Stu
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(251, 3);
+            textBox2.Location = new Point(324, 65);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(176, 27);
             textBox2.TabIndex = 2;
@@ -126,7 +126,6 @@ namespace Stu
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 123F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 241F));
             tableLayoutPanel1.Controls.Add(dataGridView1, 1, 1);
-            tableLayoutPanel1.Controls.Add(textBox2, 1, 0);
             tableLayoutPanel1.Location = new Point(73, 220);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
@@ -153,6 +152,7 @@ namespace Stu
             AutoSize = true;
             ClientSize = new Size(1003, 484);
             Controls.Add(tableLayoutPanel1);
+            Controls.Add(textBox2);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -165,7 +165,6 @@ namespace Stu
             ((System.ComponentModel.ISupportInitialize)studentBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)studentBindingSource1).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -44,6 +44,8 @@ namespace Stu
             comboBox2 = new ComboBox();
             comboBox3 = new ComboBox();
             comboBox4 = new ComboBox();
+            comboBox5 = new ComboBox();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)studentBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -53,7 +55,7 @@ namespace Stu
             // 
             // button1
             // 
-            button1.Location = new Point(372, 328);
+            button1.Location = new Point(330, 311);
             button1.Name = "button1";
             button1.Size = new Size(205, 34);
             button1.TabIndex = 9;
@@ -63,7 +65,7 @@ namespace Stu
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(611, 80);
+            textBox1.Location = new Point(685, 77);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(161, 27);
             textBox1.TabIndex = 10;
@@ -71,7 +73,7 @@ namespace Stu
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(372, 80);
+            textBox2.Location = new Point(462, 77);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(176, 27);
             textBox2.TabIndex = 11;
@@ -83,7 +85,7 @@ namespace Stu
             comboBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "1400", "1401", "1402", "1403", "1404", "1405", "1406", "1407", "1408", "1409", "1410" });
-            comboBox1.Location = new Point(135, 80);
+            comboBox1.Location = new Point(265, 73);
             comboBox1.MinimumSize = new Size(4, 0);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 33);
@@ -93,7 +95,7 @@ namespace Stu
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(689, 35);
+            label1.Location = new Point(754, 35);
             label1.Name = "label1";
             label1.Size = new Size(27, 20);
             label1.TabIndex = 13;
@@ -102,7 +104,7 @@ namespace Stu
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(405, 35);
+            label2.Location = new Point(502, 35);
             label2.Name = "label2";
             label2.Size = new Size(90, 20);
             label2.TabIndex = 14;
@@ -111,16 +113,17 @@ namespace Stu
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(152, 35);
+            label3.Location = new Point(306, 35);
             label3.Name = "label3";
             label3.Size = new Size(92, 20);
             label3.TabIndex = 15;
             label3.Text = "سال تحصیلی";
+            label3.Click += label3_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(177, 171);
+            label4.Location = new Point(163, 171);
             label4.Name = "label4";
             label4.Size = new Size(67, 20);
             label4.TabIndex = 22;
@@ -129,7 +132,7 @@ namespace Stu
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(428, 171);
+            label5.Location = new Point(421, 171);
             label5.Name = "label5";
             label5.Size = new Size(67, 20);
             label5.TabIndex = 21;
@@ -138,7 +141,7 @@ namespace Stu
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(664, 171);
+            label6.Location = new Point(671, 171);
             label6.Name = "label6";
             label6.Size = new Size(67, 20);
             label6.TabIndex = 20;
@@ -147,7 +150,7 @@ namespace Stu
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(135, 210);
+            comboBox2.Location = new Point(128, 210);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(151, 28);
             comboBox2.TabIndex = 23;
@@ -155,7 +158,7 @@ namespace Stu
             // comboBox3
             // 
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(382, 210);
+            comboBox3.Location = new Point(369, 210);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(166, 28);
             comboBox3.TabIndex = 24;
@@ -163,16 +166,37 @@ namespace Stu
             // comboBox4
             // 
             comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(621, 210);
+            comboBox4.Location = new Point(630, 210);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(151, 28);
             comboBox4.TabIndex = 25;
+            // 
+            // comboBox5
+            // 
+            comboBox5.FormattingEnabled = true;
+            comboBox5.Items.AddRange(new object[] { "چهارم", "پنجم", "ششم", "هفتم", "هشتم", "نهم" });
+            comboBox5.Location = new Point(65, 78);
+            comboBox5.Name = "comboBox5";
+            comboBox5.Size = new Size(149, 28);
+            comboBox5.TabIndex = 26;
+            comboBox5.SelectedIndexChanged += comboBox5_SelectedIndexChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(90, 35);
+            label7.Name = "label7";
+            label7.Size = new Size(92, 20);
+            label7.TabIndex = 27;
+            label7.Text = "سال تحصیلی";
             // 
             // frmCreate
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(896, 463);
+            ClientSize = new Size(927, 446);
+            Controls.Add(label7);
+            Controls.Add(comboBox5);
             Controls.Add(comboBox4);
             Controls.Add(comboBox3);
             Controls.Add(comboBox2);
@@ -189,7 +213,7 @@ namespace Stu
             Name = "frmCreate";
             Text = "create";
             WindowState = FormWindowState.Maximized;
-            Click += this.frmCreate_Click;
+            Click += frmCreate_Click;
             ((System.ComponentModel.ISupportInitialize)studentBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -216,5 +240,7 @@ namespace Stu
         private ComboBox comboBox2;
         private ComboBox comboBox3;
         private ComboBox comboBox4;
+        private ComboBox comboBox5;
+        private Label label7;
     }
 }

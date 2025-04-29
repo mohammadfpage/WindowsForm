@@ -15,6 +15,7 @@ namespace Stu.Model
         public int Skill1 { get; set; }
         public int Skill2 { get; set; }
         public int Skill3 { get; set; }
+        public string LevelSchool { get; set; }
         public ICollection<StudentSkill> StudentSkills { get; set; }
 
     }
