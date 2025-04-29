@@ -17,7 +17,7 @@ namespace Stu
         private void frmCreate_Load(object sender, EventArgs e)
         {
             // پر کردن سال تحصیلی
-            comboBox1.Items.AddRange(new object[] { "1400", "1401", "1402", "1403" });
+            comboBox1.Items.AddRange(new object[] { "1400-1401", "1401-1402", "1402-1403", "1403-1404" });
 
             // بارگذاری کارگروه‌ها
             LoadSkillGroups(comboBox2);
@@ -130,6 +130,11 @@ namespace Stu
         }
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmCreate_Load_1(object sender, EventArgs e)
         {
 
         }

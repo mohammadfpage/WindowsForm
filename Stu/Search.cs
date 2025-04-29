@@ -11,7 +11,11 @@ namespace Stu
         public Search()
         {
             InitializeComponent();
-            dataGridView1.Visible = false;
+        }
+
+        private void Search_Load(object sender, EventArgs e)
+        {
+            // اگر نیاز به مقداردهی اولیه باشد اینجا اضافه کنید
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -19,8 +23,10 @@ namespace Stu
             string firstName = textBox1.Text.Trim();
             string lastName = textBox2.Text.Trim();
             string entranceYearText = comboBox1.SelectedItem?.ToString();
+            string levelStudent = comboBox2.SelectedItem?.ToString();
 
-            if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName) && string.IsNullOrEmpty(entranceYearText))
+            if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName) &&
+                string.IsNullOrEmpty(entranceYearText) && string.IsNullOrEmpty(levelStudent))
             {
                 MessageBox.Show("لطفاً حداقل یکی از فیلدها را وارد یا انتخاب کنید.", "خطا",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -31,22 +37,12 @@ namespace Stu
             {
                 int? entranceYear = null;
 
-                // تبدیل سال ورود به int اگر انتخاب شده باشد
-                if (!string.IsNullOrEmpty(entranceYearText))
+                if (!string.IsNullOrEmpty(entranceYearText) && int.TryParse(entranceYearText, out int year))
                 {
-                    if (int.TryParse(entranceYearText, out int year))
-                    {
-                        entranceYear = year;
-                    }
-                    else
-                    {
-                        MessageBox.Show("سال ورود باید عددی صحیح باشد.", "خطای داده‌ای",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+                    entranceYear = year;
                 }
 
-                DataTable result = SearchStudents(firstName, lastName, entranceYear);
+                DataTable result = SearchStudents(firstName, lastName, entranceYear, levelStudent);
 
                 if (result.Rows.Count > 0)
                 {
@@ -57,7 +53,7 @@ namespace Stu
                 else
                 {
                     dataGridView1.Visible = false;
-                    MessageBox.Show("دانشجویی با مشخصات وارد شده یافت نشد.", "نتیجه جستجو",
+                    MessageBox.Show("دانش‌آموزی با مشخصات وارد شده یافت نشد.", "نتیجه جستجو",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -67,7 +63,8 @@ namespace Stu
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private DataTable SearchStudents(string firstName, string lastName, int? entranceYear)
+
+        private DataTable SearchStudents(string firstName, string lastName, int? entranceYear, string levelStudent)
         {
             DataTable dataTable = new DataTable();
 
@@ -75,34 +72,36 @@ namespace Stu
             {
                 connection.Open();
 
-                // Query to join Student table with SkillGroups for Skill1, Skill2, Skill3
                 string query = @"
-            SELECT 
-                s.StudentId, 
-                s.FirstName, 
-                s.LastName, 
-                s.SchoolYear,
-                sg1.Name AS Skill1, 
-                sg2.Name AS Skill2, 
-                sg3.Name AS Skill3
-            FROM 
-                Student s
-            LEFT JOIN 
-                SkillGroups sg1 ON s.Skill1 = sg1.SkillGroupId
-            LEFT JOIN 
-                SkillGroups sg2 ON s.Skill2 = sg2.SkillGroupId
-            LEFT JOIN 
-                SkillGroups sg3 ON s.Skill3 = sg3.SkillGroupId
-            WHERE 
-                (@FirstName = '' OR s.FirstName LIKE '%' + @FirstName + '%')
-                AND (@LastName = '' OR s.LastName LIKE '%' + @LastName + '%')
-                AND (@EntranceYear IS NULL OR s.SchoolYear = @EntranceYear)"; // Correcting entrance year condition
+                    SELECT 
+                        s.StudentId, 
+                        s.FirstName, 
+                        s.LastName, 
+                        s.SchoolYear,
+                        s.LevelStudent,
+                        sg1.Name AS Skill1, 
+                        sg2.Name AS Skill2, 
+                        sg3.Name AS Skill3
+                    FROM 
+                        Student s
+                    LEFT JOIN 
+                        SkillGroups sg1 ON s.Skill1 = sg1.SkillGroupId
+                    LEFT JOIN 
+                        SkillGroups sg2 ON s.Skill2 = sg2.SkillGroupId
+                    LEFT JOIN 
+                        SkillGroups sg3 ON s.Skill3 = sg3.SkillGroupId
+                    WHERE 
+                        (@FirstName = '' OR s.FirstName LIKE '%' + @FirstName + '%')
+                        AND (@LastName = '' OR s.LastName LIKE '%' + @LastName + '%')
+                        AND (@EntranceYear IS NULL OR s.SchoolYear = @EntranceYear)
+                        AND (@LevelStudent = '' OR s.LevelStudent = @LevelStudent)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@FirstName", string.IsNullOrEmpty(firstName) ? "" : firstName);
                     command.Parameters.AddWithValue("@LastName", string.IsNullOrEmpty(lastName) ? "" : lastName);
-                    command.Parameters.AddWithValue("@EntranceYear", entranceYear.HasValue ? entranceYear.Value.ToString() : DBNull.Value); // Fix for entranceYear
+                    command.Parameters.AddWithValue("@EntranceYear", entranceYear.HasValue ? (object)entranceYear.Value : DBNull.Value);
+                    command.Parameters.AddWithValue("@LevelStudent", string.IsNullOrEmpty(levelStudent) ? "" : levelStudent);
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
@@ -116,23 +115,34 @@ namespace Stu
 
         private void SetGridHeaders()
         {
-            dataGridView1.Columns["StudentId"].HeaderText = "کد دانشجو";
+            dataGridView1.Columns["StudentId"].HeaderText = "کد دانش‌آموز";
             dataGridView1.Columns["FirstName"].HeaderText = "نام";
             dataGridView1.Columns["LastName"].HeaderText = "نام خانوادگی";
             dataGridView1.Columns["SchoolYear"].HeaderText = "سال ورود";
-            dataGridView1.Columns["Skill1"].HeaderText = "مهارت 1";
-            dataGridView1.Columns["Skill2"].HeaderText = "مهارت 2";
-            dataGridView1.Columns["Skill3"].HeaderText = "مهارت 3";
+            dataGridView1.Columns["LevelStudent"].HeaderText = "پایه تحصیلی";
+            dataGridView1.Columns["Skill1"].HeaderText = "مهارت ۱";
+            dataGridView1.Columns["Skill2"].HeaderText = "مهارت ۲";
+            dataGridView1.Columns["Skill3"].HeaderText = "مهارت ۳";
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            // برای عملیات روی کلیک سلول
+            // نام
         }
 
-        private void Search_Load(object sender, EventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
+            // نام خانوادگی
+        }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // سال ورود
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // پایه تحصیلی
         }
     }
 }

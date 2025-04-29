@@ -28,119 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             button1 = new Button();
             txtPass = new TextBox();
+            label2 = new Label();
             txtUser = new TextBox();
             label1 = new Label();
-            label2 = new Label();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            tableLayoutPanel1.SuspendLayout();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(454, 311);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            resources.ApplyResources(button1, "button1");
+            button1.BackColor = Color.Gainsboro;
             button1.Name = "button1";
-            button1.RightToLeft = RightToLeft.Yes;
-            button1.Size = new Size(86, 31);
-            button1.TabIndex = 0;
-            button1.Text = "ورود";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // txtPass
             // 
-            txtPass.Location = new Point(363, 249);
-            txtPass.Margin = new Padding(3, 4, 3, 4);
+            resources.ApplyResources(txtPass, "txtPass");
+            txtPass.BackColor = SystemColors.ControlLight;
             txtPass.Name = "txtPass";
-            txtPass.RightToLeft = RightToLeft.Yes;
-            txtPass.Size = new Size(177, 27);
-            txtPass.TabIndex = 1;
-            // 
-            // txtUser
-            // 
-            txtUser.Location = new Point(363, 141);
-            txtUser.Margin = new Padding(3, 4, 3, 4);
-            txtUser.Name = "txtUser";
-            txtUser.Size = new Size(177, 27);
-            txtUser.TabIndex = 2;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(470, 92);
-            label1.Name = "label1";
-            label1.Size = new Size(70, 20);
-            label1.TabIndex = 3;
-            label1.Text = "نام کاربری";
-            label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(479, 210);
+            resources.ApplyResources(label2, "label2");
+            label2.BackColor = Color.SeaShell;
             label2.Name = "label2";
-            label2.RightToLeft = RightToLeft.Yes;
-            label2.Size = new Size(61, 20);
-            label2.TabIndex = 4;
-            label2.Text = "رمز عبور";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
+            label2.Click += label2_Click;
             // 
-            // tableLayoutPanel1
+            // txtUser
             // 
-            tableLayoutPanel1.AutoScroll = true;
-            tableLayoutPanel1.AutoSize = true;
-            tableLayoutPanel1.ColumnCount = 4;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 229F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 314F));
-            tableLayoutPanel1.Controls.Add(button1, 2, 7);
-            tableLayoutPanel1.Controls.Add(label2, 2, 4);
-            tableLayoutPanel1.Controls.Add(label1, 2, 1);
-            tableLayoutPanel1.Controls.Add(txtUser, 2, 3);
-            tableLayoutPanel1.Controls.Add(txtPass, 2, 6);
-            tableLayoutPanel1.Location = new Point(-3, 1);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 9;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 67.16418F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 32.83582F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 73F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 62F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 73F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 306F));
-            tableLayoutPanel1.Size = new Size(892, 687);
-            tableLayoutPanel1.TabIndex = 5;
-            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
+            resources.ApplyResources(txtUser, "txtUser");
+            txtUser.BackColor = SystemColors.ControlLight;
+            txtUser.Name = "txtUser";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(label1, "label1");
+            label1.BackColor = Color.SeaShell;
+            label1.Name = "label1";
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(panel1, "panel1");
+            panel1.BackgroundImage = Properties.Resources.WhatsApp_Image_2025_04_28_at_02_09_08_07df415c;
+            panel1.Name = "panel1";
+            panel1.Paint += panel1_Paint;
+            // 
+            // panel2
+            // 
+            resources.ApplyResources(panel2, "panel2");
+            panel2.BackgroundImage = Properties.Resources._2;
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(txtUser);
+            panel2.Controls.Add(button1);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(txtPass);
+            panel2.Name = "panel2";
             // 
             // frmLogin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(889, 684);
-            Controls.Add(tableLayoutPanel1);
-            Margin = new Padding(3, 4, 3, 4);
+            BackColor = Color.White;
+            BackgroundImage = Properties.Resources.WhatsApp_Image_2025_04_28_at_02_09_09_2581277f;
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            HelpButton = true;
             Name = "frmLogin";
-            RightToLeft = RightToLeft.Yes;
-            RightToLeftLayout = true;
-            Text = "صفحه ورود";
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
+            WindowState = FormWindowState.Maximized;
+            Load += frmLogin_Load;
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
         private Button button1;
         private TextBox txtPass;
+        private Label label2;
         private TextBox txtUser;
         private Label label1;
-        private Label label2;
-        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
+        private Panel panel2;
     }
 }
