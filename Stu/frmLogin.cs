@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using Stu.Data;
 using System;
 using System.Windows.Forms;
 
@@ -11,7 +10,7 @@ namespace Stu
         {
             InitializeComponent();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             string username = txtUser.Text.Trim();
             string password = txtPass.Text.Trim();
@@ -26,7 +25,9 @@ namespace Stu
             {
                 using (SqlConnection connection = DatabaseHelper.GetConnection())
                 {
+                    // تست اتصال
                     connection.Open();
+                    MessageBox.Show("✅ اتصال موفق به دیتابیس برقرار شد.", "اتصال", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     string query = @"SELECT RoleId FROM Users WHERE Username = @Username AND Password = @Password";
 
@@ -67,9 +68,10 @@ namespace Stu
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در اتصال به دیتابیس: {ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"❌ خطا در اتصال یا اجرای کوئری:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
@@ -85,5 +87,7 @@ namespace Stu
         {
 
         }
+
+        
     }
 }

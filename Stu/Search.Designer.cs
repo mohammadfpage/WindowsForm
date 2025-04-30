@@ -65,6 +65,7 @@
             // panel2
             // 
             panel2.BackgroundImage = Properties.Resources._2;
+            panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.Controls.Add(comboBox2);
             panel2.Controls.Add(dataGridView1);
             panel2.Controls.Add(label4);
@@ -98,12 +99,12 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.Anchor = AnchorStyles.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(128, 180);
+            dataGridView1.Location = new Point(115, 176);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RightToLeft = RightToLeft.Yes;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1075, 251);
+            dataGridView1.Size = new Size(1036, 251);
             dataGridView1.TabIndex = 27;
             dataGridView1.Visible = false;
             // 
@@ -111,10 +112,10 @@
             // 
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
-            label4.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Tahoma", 12F);
             label4.Location = new Point(363, 78);
             label4.Name = "label4";
-            label4.Size = new Size(86, 18);
+            label4.Size = new Size(114, 24);
             label4.TabIndex = 29;
             label4.Text = "پایه تحصیلی";
             // 
@@ -132,9 +133,10 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.None;
-            button1.Location = new Point(128, 117);
+            button1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(128, 102);
             button1.Name = "button1";
-            button1.Size = new Size(134, 29);
+            button1.Size = new Size(134, 41);
             button1.TabIndex = 20;
             button1.Text = "جستجو";
             button1.UseVisualStyleBackColor = true;
@@ -144,10 +146,10 @@
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Tahoma", 12F);
             label1.Location = new Point(1061, 78);
             label1.Name = "label1";
-            label1.Size = new Size(25, 18);
+            label1.Size = new Size(34, 24);
             label1.TabIndex = 24;
             label1.Text = "نام";
             // 
@@ -155,10 +157,10 @@
             // 
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
-            label2.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Tahoma", 12F);
             label2.Location = new Point(797, 78);
             label2.Name = "label2";
-            label2.Size = new Size(88, 18);
+            label2.Size = new Size(118, 24);
             label2.TabIndex = 25;
             label2.Text = "نام خانوادگی";
             // 
@@ -175,10 +177,10 @@
             // 
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
-            label3.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Tahoma", 12F);
             label3.Location = new Point(588, 78);
             label3.Name = "label3";
-            label3.Size = new Size(94, 18);
+            label3.Size = new Size(124, 24);
             label3.TabIndex = 26;
             label3.Text = "سال تحصیلی";
             // 

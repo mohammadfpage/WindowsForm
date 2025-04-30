@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using Stu.Data;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -283,6 +282,21 @@ namespace Stu
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
             // منطق برای Skill1 (در صورت نیاز)
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmEdit_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

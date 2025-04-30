@@ -92,10 +92,10 @@
             // 
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
-            label3.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(883, 102);
             label3.Name = "label3";
-            label3.Size = new Size(94, 18);
+            label3.Size = new Size(124, 24);
             label3.TabIndex = 15;
             label3.Text = "سال تحصیلی";
             // 
@@ -103,10 +103,10 @@
             // 
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
-            label2.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(1084, 102);
             label2.Name = "label2";
-            label2.Size = new Size(88, 18);
+            label2.Size = new Size(118, 24);
             label2.TabIndex = 14;
             label2.Text = "نام خانوادگی";
             // 
@@ -114,10 +114,10 @@
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(1339, 102);
             label1.Name = "label1";
-            label1.Size = new Size(25, 18);
+            label1.Size = new Size(34, 24);
             label1.TabIndex = 13;
             label1.Text = "نام";
             // 
@@ -150,10 +150,10 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.None;
-            button1.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(434, 138);
+            button1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(435, 132);
             button1.Name = "button1";
-            button1.Size = new Size(134, 29);
+            button1.Size = new Size(134, 42);
             button1.TabIndex = 9;
             button1.Text = "جستجو";
             button1.UseVisualStyleBackColor = true;
@@ -161,10 +161,10 @@
             // 
             // button2
             // 
-            button2.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.Location = new Point(120, 137);
             button2.Name = "button2";
-            button2.Size = new Size(223, 32);
+            button2.Size = new Size(223, 37);
             button2.TabIndex = 17;
             button2.Text = "اضافه کردن دانش اموزش";
             button2.UseVisualStyleBackColor = true;
@@ -185,10 +185,10 @@
             // 
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
-            label4.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(674, 102);
             label4.Name = "label4";
-            label4.Size = new Size(86, 18);
+            label4.Size = new Size(114, 24);
             label4.TabIndex = 19;
             label4.Text = "پایه تحصیلی";
             // 
@@ -205,6 +205,7 @@
             // 
             // panel2
             // 
+            panel2.BackgroundImage = Properties.Resources._2;
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.Controls.Add(comboBox2);
             panel2.Controls.Add(dataGridView1);

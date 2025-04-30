@@ -29,48 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            button1 = new Button();
-            txtPass = new TextBox();
-            label2 = new Label();
-            txtUser = new TextBox();
-            label1 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            label1 = new Label();
+            txtUser = new TextBox();
+            button1 = new Button();
+            label2 = new Label();
+            txtPass = new TextBox();
             panel2.SuspendLayout();
             SuspendLayout();
-            // 
-            // button1
-            // 
-            resources.ApplyResources(button1, "button1");
-            button1.BackColor = Color.Gainsboro;
-            button1.Name = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // txtPass
-            // 
-            resources.ApplyResources(txtPass, "txtPass");
-            txtPass.BackColor = SystemColors.ControlLight;
-            txtPass.Name = "txtPass";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(label2, "label2");
-            label2.BackColor = Color.SeaShell;
-            label2.Name = "label2";
-            label2.Click += label2_Click;
-            // 
-            // txtUser
-            // 
-            resources.ApplyResources(txtUser, "txtUser");
-            txtUser.BackColor = SystemColors.ControlLight;
-            txtUser.Name = "txtUser";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(label1, "label1");
-            label1.BackColor = Color.SeaShell;
-            label1.Name = "label1";
             // 
             // panel1
             // 
@@ -89,6 +56,38 @@
             panel2.Controls.Add(label2);
             panel2.Controls.Add(txtPass);
             panel2.Name = "panel2";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(label1, "label1");
+            label1.BackColor = Color.SeaShell;
+            label1.Name = "label1";
+            // 
+            // txtUser
+            // 
+            resources.ApplyResources(txtUser, "txtUser");
+            txtUser.BackColor = SystemColors.ControlLight;
+            txtUser.Name = "txtUser";
+            // 
+            // button1
+            // 
+            resources.ApplyResources(button1, "button1");
+            button1.BackColor = Color.Gainsboro;
+            button1.Name = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
+            // label2
+            // 
+            resources.ApplyResources(label2, "label2");
+            label2.BackColor = Color.SeaShell;
+            label2.Name = "label2";
+            // 
+            // txtPass
+            // 
+            resources.ApplyResources(txtPass, "txtPass");
+            txtPass.BackColor = SystemColors.ControlLight;
+            txtPass.Name = "txtPass";
             // 
             // frmLogin
             // 
@@ -109,12 +108,12 @@
         }
 
         #endregion
-        private Button button1;
-        private TextBox txtPass;
-        private Label label2;
-        private TextBox txtUser;
-        private Label label1;
         private Panel panel1;
         private Panel panel2;
+        private Label label1;
+        private TextBox txtUser;
+        private Button button1;
+        private Label label2;
+        private TextBox txtPass;
     }
 }
