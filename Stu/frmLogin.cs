@@ -1,5 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Stu
@@ -10,10 +17,31 @@ namespace Stu
         {
             InitializeComponent();
         }
-        private void button1_Click_1(object sender, EventArgs e)
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            string username = txtUser.Text.Trim();
-            string password = txtPass.Text.Trim();
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            // نام کاربری
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            // رمز عبور
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string username = textUser.Text.Trim();
+            string password = textPass.Text.Trim();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
@@ -25,7 +53,6 @@ namespace Stu
             {
                 using (SqlConnection connection = DatabaseHelper.GetConnection())
                 {
-                    // تست اتصال
                     connection.Open();
                     MessageBox.Show("✅ اتصال موفق به دیتابیس برقرار شد.", "اتصال", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -72,22 +99,5 @@ namespace Stu
             }
         }
 
-
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
     }
 }

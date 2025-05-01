@@ -59,8 +59,7 @@ namespace Stu
                 MessageBox.Show($"خطا در بارگذاری کارگروه‌ها:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             string firstName = textBox1.Text.Trim();
             string lastName = textBox2.Text.Trim();
@@ -72,20 +71,14 @@ namespace Stu
                 return;
             }
 
-            if (!int.TryParse(entranceYearText, out int entranceYear))
-            {
-                MessageBox.Show("سال ورود باید عددی صحیح باشد.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             int? skill1 = comboBox2.SelectedValue as int?;
             int? skill2 = comboBox3.SelectedValue as int?;
             int? skill3 = comboBox4.SelectedValue as int?;
 
-            InsertStudent(firstName, lastName, entranceYear, skill1, skill2, skill3);
+            InsertStudent(firstName, lastName, entranceYearText, skill1, skill2, skill3);
         }
-
-        private void InsertStudent(string firstName, string lastName, int entranceYear, int? skill1, int? skill2, int? skill3)
+        private void InsertStudent(string firstName, string lastName, string entranceYear, int? skill1, int? skill2, int? skill3)
         {
             try
             {
@@ -117,20 +110,6 @@ namespace Stu
             {
                 MessageBox.Show($"خطا در ذخیره سازی:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e) { }
-        private void textBox2_TextChanged(object sender, EventArgs e) { }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void frmCreate_Load_1(object sender, EventArgs e)

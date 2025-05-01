@@ -48,6 +48,7 @@ namespace Stu
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             button1 = new Button();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)studentBindingSource).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -66,12 +67,12 @@ namespace Stu
             panel1.Name = "panel1";
             panel1.Size = new Size(1136, 226);
             panel1.TabIndex = 44;
-            panel1.Paint += panel1_Paint;
             // 
             // panel2
             // 
             panel2.BackgroundImage = Properties.Resources._2;
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.Controls.Add(label7);
             panel2.Controls.Add(comboBox5);
             panel2.Controls.Add(label8);
             panel2.Controls.Add(comboBox4);
@@ -98,7 +99,7 @@ namespace Stu
             comboBox5.Anchor = AnchorStyles.None;
             comboBox5.FormattingEnabled = true;
             comboBox5.Items.AddRange(new object[] { "چهارم", "پنجم", "ششم", "هفتم", "هشتم", "نهم" });
-            comboBox5.Location = new Point(188, 126);
+            comboBox5.Location = new Point(197, 157);
             comboBox5.Name = "comboBox5";
             comboBox5.Size = new Size(151, 28);
             comboBox5.TabIndex = 58;
@@ -108,7 +109,7 @@ namespace Stu
             label8.Anchor = AnchorStyles.None;
             label8.AutoSize = true;
             label8.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(211, 96);
+            label8.Location = new Point(220, 127);
             label8.Name = "label8";
             label8.Size = new Size(114, 24);
             label8.TabIndex = 57;
@@ -118,7 +119,7 @@ namespace Stu
             // 
             comboBox4.Anchor = AnchorStyles.None;
             comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(716, 260);
+            comboBox4.Location = new Point(725, 291);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(151, 28);
             comboBox4.TabIndex = 56;
@@ -127,7 +128,7 @@ namespace Stu
             // 
             comboBox3.Anchor = AnchorStyles.None;
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(477, 260);
+            comboBox3.Location = new Point(486, 291);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(166, 28);
             comboBox3.TabIndex = 55;
@@ -136,7 +137,7 @@ namespace Stu
             // 
             comboBox2.Anchor = AnchorStyles.None;
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(230, 260);
+            comboBox2.Location = new Point(239, 291);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(151, 28);
             comboBox2.TabIndex = 54;
@@ -146,7 +147,7 @@ namespace Stu
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(272, 221);
+            label4.Location = new Point(281, 252);
             label4.Name = "label4";
             label4.Size = new Size(85, 24);
             label4.TabIndex = 53;
@@ -157,19 +158,18 @@ namespace Stu
             label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
             label5.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(523, 221);
+            label5.Location = new Point(532, 252);
             label5.Name = "label5";
             label5.Size = new Size(85, 24);
             label5.TabIndex = 52;
             label5.Text = "کارگروه 2";
-            label5.Click += label5_Click;
             // 
             // label6
             // 
             label6.Anchor = AnchorStyles.None;
             label6.AutoSize = true;
             label6.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(759, 221);
+            label6.Location = new Point(768, 252);
             label6.Name = "label6";
             label6.Size = new Size(85, 24);
             label6.TabIndex = 51;
@@ -180,7 +180,7 @@ namespace Stu
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(409, 85);
+            label3.Location = new Point(418, 116);
             label3.Name = "label3";
             label3.Size = new Size(124, 24);
             label3.TabIndex = 50;
@@ -190,7 +190,7 @@ namespace Stu
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(620, 85);
+            label2.Location = new Point(629, 116);
             label2.Name = "label2";
             label2.Size = new Size(118, 24);
             label2.TabIndex = 49;
@@ -201,7 +201,7 @@ namespace Stu
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(840, 85);
+            label1.Location = new Point(849, 116);
             label1.Name = "label1";
             label1.Size = new Size(34, 24);
             label1.TabIndex = 48;
@@ -213,8 +213,8 @@ namespace Stu
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1400", "1401", "1402", "1403", "1404", "1405", "1406", "1407", "1408", "1409", "1410" });
-            comboBox1.Location = new Point(386, 126);
+            comboBox1.Items.AddRange(new object[] { "1400-1401", "1401-1402", "1402-1403", "1403-1404", "1404-1405", "1405-1406", "1406-1407", "1407-1408", "1408-1409", "1409-1410", "1410-1411" });
+            comboBox1.Location = new Point(395, 157);
             comboBox1.MinimumSize = new Size(4, 0);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 33);
@@ -223,29 +223,43 @@ namespace Stu
             // textBox2
             // 
             textBox2.Anchor = AnchorStyles.None;
-            textBox2.Location = new Point(576, 130);
+            textBox2.Location = new Point(585, 161);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(176, 27);
             textBox2.TabIndex = 46;
+            textBox2.TextAlign = HorizontalAlignment.Right;
             // 
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.None;
-            textBox1.Location = new Point(784, 130);
+            textBox1.Location = new Point(793, 161);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(161, 27);
             textBox1.TabIndex = 45;
+            textBox1.TextAlign = HorizontalAlignment.Right;
             // 
             // button1
             // 
             button1.Anchor = AnchorStyles.None;
             button1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(458, 368);
+            button1.Location = new Point(469, 374);
             button1.Name = "button1";
             button1.Size = new Size(205, 34);
             button1.TabIndex = 44;
             button1.Text = "ویرایش";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.None;
+            label7.AutoSize = true;
+            label7.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(329, 36);
+            label7.Name = "label7";
+            label7.Size = new Size(498, 28);
+            label7.TabIndex = 46;
+            label7.Text = "نرم افزار کلاس های مهارتی دبستان دخترانه هدایت";
             // 
             // frmEdit
             // 
@@ -285,5 +299,6 @@ namespace Stu
         private TextBox textBox2;
         private TextBox textBox1;
         private Button button1;
+        private Label label7;
     }
 }

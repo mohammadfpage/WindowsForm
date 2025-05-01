@@ -122,26 +122,10 @@ namespace Stu
             dataGridView1.Columns["Skill1"].HeaderText = "مهارت ۱";
             dataGridView1.Columns["Skill2"].HeaderText = "مهارت ۲";
             dataGridView1.Columns["Skill3"].HeaderText = "مهارت ۳";
+            dataGridView1.Columns["StudentId"].Visible = false;
+
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            // نام
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            // نام خانوادگی
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // سال ورود
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // پایه تحصیلی
-        }
+       
     }
 }

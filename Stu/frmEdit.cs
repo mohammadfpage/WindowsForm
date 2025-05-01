@@ -13,26 +13,9 @@ namespace Stu
         {
             InitializeComponent();
             _studentId = studentId;
-
-            LoadSchoolYears();
-            LoadLevelStudents();
             LoadSkillGroups();
             LoadStudentData();
         }
-
-        private void LoadSchoolYears()
-        {
-            comboBox1.Items.Clear();
-            comboBox1.Items.AddRange(new object[] { "", "1400", "1401", "1402", "1403", "1404", "1405", "1406", "1407", "1408", "1409", "1410" });
-        }
-
-        private void LoadLevelStudents()
-        {
-            // مقادیر پایه تحصیلی هماهنگ با comboBox2 در CreateUser
-            comboBox5.Items.Clear();
-            comboBox5.Items.AddRange(new object[] { "", "اول", "دوم", "سوم", "چهارم", "پنجم", "ششم" });
-        }
-
         private void LoadSkillGroups()
         {
             try
@@ -67,7 +50,6 @@ namespace Stu
                 MessageBox.Show($"خطا در بارگذاری گروه‌های مهارتی: {ex.Message}\nStackTrace: {ex.StackTrace}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void LoadStudentData()
         {
             try
@@ -75,11 +57,7 @@ namespace Stu
                 // غیرفعال کردن رویدادها برای جلوگیری از خطا در مقداردهی اولیه
                 textBox1.TextChanged -= textBox1_TextChanged;
                 textBox2.TextChanged -= textBox2_TextChanged;
-                comboBox1.SelectedIndexChanged -= comboBox1_SelectedIndexChanged;
-                comboBox5.SelectedIndexChanged -= comboBox5_SelectedIndexChanged;
-                comboBox2.SelectedIndexChanged -= comboBox2_SelectedIndexChanged;
-                comboBox3.SelectedIndexChanged -= comboBox3_SelectedIndexChanged;
-                comboBox4.SelectedIndexChanged -= comboBox4_SelectedIndexChanged;
+
 
                 using (SqlConnection connection = DatabaseHelper.GetConnection())
                 {
@@ -155,14 +133,9 @@ namespace Stu
                 // فعال کردن مجدد رویدادها
                 textBox1.TextChanged += textBox1_TextChanged;
                 textBox2.TextChanged += textBox2_TextChanged;
-                comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-                comboBox5.SelectedIndexChanged += comboBox5_SelectedIndexChanged;
-                comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
-                comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
-                comboBox4.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
+
             }
         }
-
         private void SetSelectedValueSafe(ComboBox comboBox, object value)
         {
             if (value != DBNull.Value)
@@ -179,8 +152,7 @@ namespace Stu
             }
             comboBox.SelectedIndex = -1; // هیچ موردی انتخاب نشود
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -236,7 +208,6 @@ namespace Stu
                 MessageBox.Show($"خطا در ویرایش اطلاعات: {ex.Message}\nStackTrace: {ex.StackTrace}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             // اعتبارسنجی نام
@@ -247,7 +218,6 @@ namespace Stu
                 textBox1.SelectionStart = textBox1.Text.Length;
             }
         }
-
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             // اعتبارسنجی نام خانوادگی
@@ -259,42 +229,7 @@ namespace Stu
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // منطق برای سال تحصیلی (در صورت نیاز)
-        }
-
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // منطق برای پایه تحصیلی (در صورت نیاز)
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // منطق برای Skill3 (در صورت نیاز)
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // منطق برای Skill2 (در صورت نیاز)
-        }
-
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // منطق برای Skill1 (در صورت نیاز)
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void frmEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

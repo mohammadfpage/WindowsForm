@@ -2,17 +2,37 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFrameworks>net8.0-windows7.0</TargetFrameworks>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <UseWPF>True</UseWPF>
+    <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Database\school.mdf" />
+    <None Remove="Database\school_log.ldf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Database\school.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Database\school_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -31,10 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Database\school.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Database\school_log.ldf">
+    <None Update="school.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

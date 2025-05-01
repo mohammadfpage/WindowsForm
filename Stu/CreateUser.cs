@@ -11,7 +11,6 @@ namespace Stu
         {
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             string firstName = textBox1.Text.Trim();
@@ -26,25 +25,17 @@ namespace Stu
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             try
             {
                 int? entranceYear = null;
 
                 if (!string.IsNullOrEmpty(entranceYearText))
                 {
-                    if (int.TryParse(entranceYearText, out int year))
+                    if (!int.TryParse(entranceYearText, out int year))
                     {
                         entranceYear = year;
                     }
-                    else
-                    {
-                        MessageBox.Show("سال ورود باید عددی صحیح باشد.", "خطای داده‌ای",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
                 }
-
                 DataTable result = SearchStudents(firstName, lastName, entranceYear, levelStudent);
 
                 if (result.Rows.Count > 0)
@@ -66,7 +57,6 @@ namespace Stu
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private DataTable SearchStudents(string firstName, string lastName, int? entranceYear, string levelStudent)
         {
             DataTable dataTable = new DataTable();
@@ -97,7 +87,7 @@ namespace Stu
                         (@FirstName = '' OR s.FirstName LIKE '%' + @FirstName + '%')
                         AND (@LastName = '' OR s.LastName LIKE '%' + @LastName + '%')
                         AND (@EntranceYear IS NULL OR s.SchoolYear = @EntranceYear)
-                        AND (@LevelStudent = '' OR s.LevelStudent = @LevelStudent)"; 
+                        AND (@LevelStudent = '' OR s.LevelStudent = @LevelStudent)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -112,10 +102,8 @@ namespace Stu
                     }
                 }
             }
-
             return dataTable;
         }
-
         private void SetGridHeaders()
         {
             dataGridView1.Columns["StudentId"].HeaderText = "کد دانش‌آموز";
@@ -126,8 +114,9 @@ namespace Stu
             dataGridView1.Columns["Skill1"].HeaderText = "مهارت 1";
             dataGridView1.Columns["Skill2"].HeaderText = "مهارت 2";
             dataGridView1.Columns["Skill3"].HeaderText = "مهارت 3";
-        }
+            dataGridView1.Columns["StudentId"].Visible = false;
 
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -144,7 +133,6 @@ namespace Stu
                 }
             }
         }
-
         private void EditStudent(int studentId)
         {
             frmEdit editForm = new frmEdit(studentId);
@@ -152,7 +140,6 @@ namespace Stu
 
             button1_Click(null, null);
         }
-
         private void DeleteStudent(int studentId)
         {
             var result = MessageBox.Show("آیا از حذف این دانش‌آموز مطمئن هستید؟", "حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -171,7 +158,6 @@ namespace Stu
                             command.ExecuteNonQuery();
                         }
                     }
-
                     MessageBox.Show("دانش‌آموز با موفقیت حذف شد.", "حذف موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     button1_Click(null, null);
@@ -182,7 +168,6 @@ namespace Stu
                 }
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             frmCreate createForm = new frmCreate();
@@ -190,10 +175,18 @@ namespace Stu
 
             button1_Click(null, null);
         }
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             // اینجا نیازی به کدنویسی اضافی نیست چون مقدارش در button1 گرفته می‌شود
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CreateUser_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

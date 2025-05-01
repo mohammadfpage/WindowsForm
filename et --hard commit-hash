@@ -1,0 +1,47 @@
+[33mcommit aeff2e4a321839ddeb551488f8a5f305398db4d3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: mohammadfpage <fallahi.mq@gmail.com>
+Date:   Tue Apr 29 21:45:59 2025 -0700
+
+    push
+
+[33mcommit 847ebe59fc027cab416a571ab6fb6ee31fafbe6e[m
+Author: mohammadfpage <fallahi.mq@gmail.com>
+Date:   Tue Apr 29 10:49:51 2025 -0700
+
+    Finish CRUD
+
+[33mcommit 2c4ff86d0818e50e6a4d88903b755376d7feb444[m
+Author: mohammadfpage <fallahi.mq@gmail.com>
+Date:   Tue Apr 29 03:34:14 2025 -0700
+
+    CRUD in Admin role finish
+
+[33mcommit 3a94dae54395b766b87f5032686afa2e173f90dc[m
+Author: mohammadfpage <fallahi.mq@gmail.com>
+Date:   Mon Apr 28 01:51:43 2025 -0700
+
+    project in add modir in role the application and oages
+
+[33mcommit bfb0d64022e6115aa4b8a743b9fa9a83fa86febd[m
+Author: mohammadfpage <fallahi.mq@gmail.com>
+Date:   Sun Apr 27 00:32:02 2025 -0700
+
+    enter the role 1 and 2
+
+[33mcommit 726f5827af154791924317117ec504c6cbb4b453[m
+Author: Mohammad <mehdi83f@gmail.com>
+Date:   Sat Apr 26 13:07:52 2025 -0700
+
+    The User Login Validation role and user
+
+[33mcommit ffd8faf57464d2ff39d77f5a002293d2c270d1fc[m
+Author: Mohammad <mehdi83f@gmail.com>
+Date:   Fri Apr 25 12:47:36 2025 -0700
+
+    Add project files.
+
+[33mcommit 3c4e0f806a689c18c125811a1d57ed9e69378912[m
+Author: Mohammad <mehdi83f@gmail.com>
+Date:   Fri Apr 25 12:47:33 2025 -0700
+
+    Add .gitattributes and .gitignore.

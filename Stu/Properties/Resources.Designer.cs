@@ -73,6 +73,26 @@ namespace Stu.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap photo_2025_05_01_10_01_30 {
+            get {
+                object obj = ResourceManager.GetObject("photo_2025-05-01_10-01-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap photo_2025_05_01_10_01_42 {
+            get {
+                object obj = ResourceManager.GetObject("photo_2025-05-01_10-01-42", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap WhatsApp_Image_2025_04_28_at_02_09_08_07df415c {
             get {
                 object obj = ResourceManager.GetObject("WhatsApp Image 2025-04-28 at 02.09.08_07df415c", resourceCulture);
