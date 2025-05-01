@@ -136,6 +136,7 @@ namespace Stu
 
             }
         }
+
         private void SetSelectedValueSafe(ComboBox comboBox, object value)
         {
             if (value != DBNull.Value)
