@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             panel1 = new Panel();
             panel2 = new Panel();
             panel4 = new Panel();
@@ -77,18 +78,20 @@
             // 
             panel4.Anchor = AnchorStyles.None;
             panel4.BackgroundImage = Properties.Resources.photo_2025_05_01_10_01_42;
+            panel4.BackgroundImageLayout = ImageLayout.Stretch;
             panel4.Location = new Point(613, 155);
             panel4.Name = "panel4";
-            panel4.Size = new Size(239, 265);
+            panel4.Size = new Size(322, 276);
             panel4.TabIndex = 24;
             // 
             // panel3
             // 
             panel3.Anchor = AnchorStyles.None;
             panel3.BackgroundImage = Properties.Resources.photo_2025_05_01_10_01_30;
-            panel3.Location = new Point(84, 155);
+            panel3.BackgroundImageLayout = ImageLayout.Stretch;
+            panel3.Location = new Point(3, 155);
             panel3.Name = "panel3";
-            panel3.Size = new Size(270, 287);
+            panel3.Size = new Size(351, 276);
             panel3.TabIndex = 23;
             // 
             // label5
@@ -121,9 +124,9 @@
             textPass.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textPass.Location = new Point(383, 280);
             textPass.Name = "textPass";
+            textPass.RightToLeft = RightToLeft.No;
             textPass.Size = new Size(207, 32);
             textPass.TabIndex = 3;
-            textPass.TextAlign = HorizontalAlignment.Right;
             textPass.TextChanged += textBox2_TextChanged;
             // 
             // textUser
@@ -132,9 +135,9 @@
             textUser.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textUser.Location = new Point(383, 155);
             textUser.Name = "textUser";
+            textUser.RightToLeft = RightToLeft.No;
             textUser.Size = new Size(207, 32);
             textUser.TabIndex = 2;
-            textUser.TextAlign = HorizontalAlignment.Right;
             textUser.TextChanged += textBox1_TextChanged;
             // 
             // label2
@@ -169,9 +172,9 @@
             ClientSize = new Size(947, 720);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmLogin";
-            RightToLeftLayout = true;
-            Text = "frmLoginn";
+            Text = "صفحه ورود";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);

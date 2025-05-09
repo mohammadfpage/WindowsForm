@@ -1,54 +1,69 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <TargetFrameworks>net8.0-windows7.0</TargetFrameworks>
-    <TargetFramework>net8.0-windows7.0</TargetFramework>
-    <UseWPF>True</UseWPF>
-    <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<TargetFramework>net8.0-windows7.0</TargetFramework>
+		<UseWPF>True</UseWPF>
+		<AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Database\school.mdf" />
-    <None Remove="Database\school_log.ldf" />
-  </ItemGroup>
+	<ItemGroup>
+	  <None Remove="Database\school.mdf" />
+	  <None Remove="Database\school_log.ldf" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Database\school.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+	  <Content Include="Database\school.mdf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Database\school_log.ldf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Icon.ico">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.4" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.4" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.4" />
-  </ItemGroup>
+	<ItemGroup>
+	  <None Include="..\..\..\..\Downloads\WhatsApp Image 2025-04-28 at 02.09.08_07df415c (2).png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Database\school_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+		<PackageReference Include="QuestPDF" Version="2025.4.3" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="Database\SqlLocalDB.msi">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+		<PackageIcon>WhatsApp Image 2025-04-28 at 02.09.08_07df415c (2).png</PackageIcon>
+		<ApplicationIcon>Icon.ico</ApplicationIcon>
+	</PropertyGroup>
 
 </Project>

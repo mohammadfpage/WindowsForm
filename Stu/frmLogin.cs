@@ -93,7 +93,7 @@ namespace Stu
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex)    
             {
                 MessageBox.Show($"❌ خطا در اتصال یا اجرای کوئری:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

@@ -32,8 +32,11 @@
             panel1 = new Panel();
             studentBindingSource = new BindingSource(components);
             panel2 = new Panel();
+            button2 = new Button();
+            label5 = new Label();
             comboBox2 = new ComboBox();
             dataGridView1 = new DataGridView();
+            PDF = new DataGridViewButtonColumn();
             label4 = new Label();
             comboBox1 = new ComboBox();
             button1 = new Button();
@@ -42,7 +45,6 @@
             textBox1 = new TextBox();
             label3 = new Label();
             textBox2 = new TextBox();
-            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)studentBindingSource).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -65,8 +67,8 @@
             // 
             // panel2
             // 
-            panel2.BackgroundImage = Properties.Resources._2;
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.Controls.Add(button2);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(comboBox2);
             panel2.Controls.Add(dataGridView1);
@@ -84,116 +86,16 @@
             panel2.Size = new Size(1304, 526);
             panel2.TabIndex = 23;
             // 
-            // comboBox2
+            // button2
             // 
-            comboBox2.Anchor = AnchorStyles.None;
-            comboBox2.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "چهارم", "پنجم", "ششم", "هفتم", "هشتم", "نهم" });
-            comboBox2.Location = new Point(343, 147);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(144, 30);
-            comboBox2.TabIndex = 28;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.None;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(120, 207);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RightToLeft = RightToLeft.Yes;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1036, 251);
-            dataGridView1.TabIndex = 27;
-            dataGridView1.Visible = false;
-            // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.None;
-            label4.AutoSize = true;
-            label4.Font = new Font("Tahoma", 12F);
-            label4.Location = new Point(368, 109);
-            label4.Name = "label4";
-            label4.Size = new Size(114, 24);
-            label4.TabIndex = 29;
-            label4.Text = "پایه تحصیلی";
-            // 
-            // comboBox1
-            // 
-            comboBox1.Anchor = AnchorStyles.None;
-            comboBox1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1400-1401", "1401-1402", "1402-1403", "1403-1404", "1404-1405", "1405-1406", "1406-1407", "1407-1408", "1408-1409", "1409-1410", "1410-1411" });
-            comboBox1.Location = new Point(575, 147);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(136, 30);
-            comboBox1.TabIndex = 23;
-            // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.None;
-            button1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(133, 133);
-            button1.Name = "button1";
-            button1.Size = new Size(134, 41);
-            button1.TabIndex = 20;
-            button1.Text = "جستجو";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 12F);
-            label1.Location = new Point(1066, 109);
-            label1.Name = "label1";
-            label1.Size = new Size(34, 24);
-            label1.TabIndex = 24;
-            label1.Text = "نام";
-            // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.None;
-            label2.AutoSize = true;
-            label2.Font = new Font("Tahoma", 12F);
-            label2.Location = new Point(802, 109);
-            label2.Name = "label2";
-            label2.Size = new Size(118, 24);
-            label2.TabIndex = 25;
-            label2.Text = "نام خانوادگی";
-            // 
-            // textBox1
-            // 
-            textBox1.Anchor = AnchorStyles.None;
-            textBox1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(995, 147);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(161, 29);
-            textBox1.TabIndex = 21;
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.None;
-            label3.AutoSize = true;
-            label3.Font = new Font("Tahoma", 12F);
-            label3.Location = new Point(593, 109);
-            label3.Name = "label3";
-            label3.Size = new Size(124, 24);
-            label3.TabIndex = 26;
-            label3.Text = "سال تحصیلی";
-            // 
-            // textBox2
-            // 
-            textBox2.Anchor = AnchorStyles.None;
-            textBox2.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(761, 149);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(176, 29);
-            textBox2.TabIndex = 22;
+            button2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button2.Location = new Point(71, 143);
+            button2.Name = "button2";
+            button2.Size = new Size(195, 41);
+            button2.TabIndex = 31;
+            button2.Text = "گزارش گیری کلی";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // label5
             // 
@@ -206,6 +108,133 @@
             label5.TabIndex = 30;
             label5.Text = "نرم افزار کلاس های مهارتی دبستان دخترانه هدایت";
             // 
+            // comboBox2
+            // 
+            comboBox2.Anchor = AnchorStyles.None;
+            comboBox2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "چهارم", "پنجم", "ششم", "هفتم", "هشتم", "نهم" });
+            comboBox2.Location = new Point(481, 148);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(144, 32);
+            comboBox2.TabIndex = 28;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.None;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { PDF });
+            dataGridView1.Location = new Point(120, 207);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RightToLeft = RightToLeft.Yes;
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(1056, 251);
+            dataGridView1.TabIndex = 27;
+            dataGridView1.Visible = false;
+            // 
+            // PDF
+            // 
+            PDF.HeaderText = "بررسی فعالیت";
+            PDF.MinimumWidth = 6;
+            PDF.Name = "PDF";
+            PDF.ReadOnly = true;
+            PDF.Resizable = DataGridViewTriState.True;
+            PDF.SortMode = DataGridViewColumnSortMode.Automatic;
+            PDF.Text = "گزارش گیری";
+            PDF.Width = 125;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.None;
+            label4.AutoSize = true;
+            label4.Font = new Font("Tahoma", 12F);
+            label4.Location = new Point(490, 109);
+            label4.Name = "label4";
+            label4.Size = new Size(114, 24);
+            label4.TabIndex = 29;
+            label4.Text = "پایه تحصیلی";
+            // 
+            // comboBox1
+            // 
+            comboBox1.Anchor = AnchorStyles.None;
+            comboBox1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "1400-1401", "1401-1402", "1402-1403", "1403-1404", "1404-1405", "1405-1406", "1406-1407", "1407-1408", "1408-1409", "1409-1410", "1410-1411" });
+            comboBox1.Location = new Point(667, 149);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(158, 32);
+            comboBox1.TabIndex = 23;
+            // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.None;
+            button1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(306, 144);
+            button1.Name = "button1";
+            button1.Size = new Size(134, 41);
+            button1.TabIndex = 20;
+            button1.Text = "جستجو";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.None;
+            label1.AutoSize = true;
+            label1.Font = new Font("Tahoma", 12F);
+            label1.Location = new Point(1142, 109);
+            label1.Name = "label1";
+            label1.Size = new Size(34, 24);
+            label1.TabIndex = 24;
+            label1.Text = "نام";
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.None;
+            label2.AutoSize = true;
+            label2.Font = new Font("Tahoma", 12F);
+            label2.Location = new Point(880, 109);
+            label2.Name = "label2";
+            label2.Size = new Size(118, 24);
+            label2.TabIndex = 25;
+            label2.Text = "نام خانوادگی";
+            // 
+            // textBox1
+            // 
+            textBox1.Anchor = AnchorStyles.None;
+            textBox1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(1082, 149);
+            textBox1.Name = "textBox1";
+            textBox1.RightToLeft = RightToLeft.No;
+            textBox1.Size = new Size(169, 32);
+            textBox1.TabIndex = 21;
+            textBox1.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.None;
+            label3.AutoSize = true;
+            label3.Font = new Font("Tahoma", 12F);
+            label3.Location = new Point(680, 109);
+            label3.Name = "label3";
+            label3.Size = new Size(124, 24);
+            label3.TabIndex = 26;
+            label3.Text = "سال تحصیلی";
+            // 
+            // textBox2
+            // 
+            textBox2.Anchor = AnchorStyles.None;
+            textBox2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox2.Location = new Point(858, 149);
+            textBox2.Name = "textBox2";
+            textBox2.RightToLeft = RightToLeft.No;
+            textBox2.Size = new Size(183, 32);
+            textBox2.TabIndex = 22;
+            textBox2.TextAlign = HorizontalAlignment.Right;
+            // 
             // Search
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -214,8 +243,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Search";
-            RightToLeft = RightToLeft.Yes;
-            RightToLeftLayout = true;
+            RightToLeft = RightToLeft.No;
             Text = "صفحه جستجوی دانش آموزان";
             Load += Search_Load;
             ((System.ComponentModel.ISupportInitialize)studentBindingSource).EndInit();
@@ -241,5 +269,7 @@
         private Label label3;
         private TextBox textBox2;
         private Label label5;
+        private Button button2;
+        private DataGridViewButtonColumn PDF;
     }
 }
