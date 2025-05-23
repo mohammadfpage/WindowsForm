@@ -123,7 +123,7 @@ namespace Stu
                     }
 
                     MessageBox.Show("اطلاعات دانش آموز با موفقیت ذخیره شد.", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    
                 }
             }
             catch (Exception ex)
@@ -131,15 +131,6 @@ namespace Stu
                 MessageBox.Show($"خطا در ذخیره‌سازی:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        // سایر متدهای رویدادی بدون تغییر باقی می‌مانند
-        private void frmCreate_Load_1(object sender, EventArgs e) { }
-        private void label11_Click(object sender, EventArgs e) { }
-        private void richTextBox1_TextChanged(object sender, EventArgs e) { }
-        private void richTextBox2_TextChanged(object sender, EventArgs e) { }
-        private void richTextBox3_TextChanged(object sender, EventArgs e) { }
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e) { }
-
 
         private void button2_Click(object sender, EventArgs e)
         {

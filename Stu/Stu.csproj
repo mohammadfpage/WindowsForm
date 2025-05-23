@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<Nullable>enable</Nullable>
+		<Nullable>disable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<TargetFramework>net8.0-windows7.0</TargetFramework>
@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\..\..\..\Downloads\WhatsApp Image 2025-04-28 at 02.09.08_07df415c (2).png">
+	  <None Include="..\..\..\..\Downloads\WhatsApp Image 2025-04-28 at 02.09.08_07df415c (2).jpg">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
@@ -46,7 +46,9 @@
 			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
-
+	<PropertyGroup>
+		<CreateDesktopShortcut>true</CreateDesktopShortcut>
+	</PropertyGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="Properties\Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
@@ -62,8 +64,9 @@
 
 	<PropertyGroup>
 		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-		<PackageIcon>WhatsApp Image 2025-04-28 at 02.09.08_07df415c (2).png</PackageIcon>
+		<PackageIcon>WhatsApp Image 2025-04-28 at 02.09.08_07df415c (2).jpg</PackageIcon>
 		<ApplicationIcon>Icon.ico</ApplicationIcon>
+		<PlatformTarget>x86</PlatformTarget>
 	</PropertyGroup>
 
 </Project>

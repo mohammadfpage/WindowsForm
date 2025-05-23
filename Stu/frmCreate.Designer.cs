@@ -61,10 +61,6 @@ namespace Stu
             panel2.SuspendLayout();
             SuspendLayout();
             // 
-            // studentBindingSource
-            // 
-            studentBindingSource.DataSource = typeof(Model.Student);
-            // 
             // panel1
             // 
             panel1.BackgroundImage = Properties.Resources.WhatsApp_Image_2025_04_28_at_02_09_08_07df415c;
@@ -112,6 +108,7 @@ namespace Stu
             // 
             // button2
             // 
+            button2.Anchor = AnchorStyles.None;
             button2.Location = new Point(310, 351);
             button2.Name = "button2";
             button2.Size = new Size(234, 38);
@@ -129,7 +126,6 @@ namespace Stu
             label11.Size = new Size(211, 24);
             label11.TabIndex = 50;
             label11.Text = "توصیف عملکرد کارگروه 3";
-            label11.Click += label11_Click;
             // 
             // label10
             // 
@@ -160,7 +156,6 @@ namespace Stu
             richTextBox1.Size = new Size(339, 125);
             richTextBox1.TabIndex = 47;
             richTextBox1.Text = "";
-            richTextBox1.TextChanged += richTextBox1_TextChanged;
             // 
             // richTextBox3
             // 
@@ -171,7 +166,6 @@ namespace Stu
             richTextBox3.Size = new Size(339, 125);
             richTextBox3.TabIndex = 46;
             richTextBox3.Text = "";
-            richTextBox3.TextChanged += richTextBox3_TextChanged;
             // 
             // richTextBox2
             // 
@@ -182,7 +176,6 @@ namespace Stu
             richTextBox2.Size = new Size(339, 125);
             richTextBox2.TabIndex = 45;
             richTextBox2.Text = "";
-            richTextBox2.TextChanged += richTextBox2_TextChanged;
             // 
             // label8
             // 
@@ -225,7 +218,6 @@ namespace Stu
             comboBox4.RightToLeft = RightToLeft.No;
             comboBox4.Size = new Size(156, 32);
             comboBox4.TabIndex = 40;
-            comboBox4.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
             // 
             // comboBox3
             // 
@@ -367,7 +359,6 @@ namespace Stu
             RightToLeftLayout = true;
             Text = "اضافه کردن دانش  آموز";
             WindowState = FormWindowState.Maximized;
-            Load += frmCreate_Load_1;
             Click += frmCreate_Click;
             ((System.ComponentModel.ISupportInitialize)studentBindingSource).EndInit();
             panel2.ResumeLayout(false);

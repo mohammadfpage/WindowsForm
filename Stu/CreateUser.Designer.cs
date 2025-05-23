@@ -48,11 +48,11 @@
             label4 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            button5 = new Button();
             button4 = new Button();
             button3 = new Button();
             label5 = new Label();
             studentBindingSource = new BindingSource(components);
-            button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)studentBindingSource).BeginInit();
@@ -184,7 +184,7 @@
             // 
             button1.Anchor = AnchorStyles.None;
             button1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(392, 139);
+            button1.Location = new Point(392, 143);
             button1.Name = "button1";
             button1.Size = new Size(134, 42);
             button1.TabIndex = 9;
@@ -266,8 +266,21 @@
             panel2.Size = new Size(1633, 536);
             panel2.TabIndex = 21;
             // 
+            // button5
+            // 
+            button5.Anchor = AnchorStyles.None;
+            button5.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button5.Location = new Point(266, 222);
+            button5.Name = "button5";
+            button5.Size = new Size(94, 39);
+            button5.TabIndex = 23;
+            button5.Text = "خروج";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // button4
             // 
+            button4.Anchor = AnchorStyles.None;
             button4.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button4.Location = new Point(497, 222);
             button4.Name = "button4";
@@ -280,6 +293,7 @@
             // 
             // button3
             // 
+            button3.Anchor = AnchorStyles.None;
             button3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button3.Location = new Point(1088, 217);
             button3.Name = "button3";
@@ -299,20 +313,6 @@
             label5.Size = new Size(498, 28);
             label5.TabIndex = 20;
             label5.Text = "نرم افزار کلاس های مهارتی دبستان دخترانه هدایت";
-            // 
-            // studentBindingSource
-            // 
-            studentBindingSource.DataSource = typeof(Model.Student);
-            // 
-            // button5
-            // 
-            button5.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button5.Location = new Point(266, 222);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 39);
-            button5.TabIndex = 23;
-            button5.Text = "خروح";
-            button5.UseVisualStyleBackColor = true;
             // 
             // CreateUser
             // 

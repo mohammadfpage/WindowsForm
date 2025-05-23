@@ -67,6 +67,7 @@
             // 
             // panel2
             // 
+            panel2.BackgroundImage = Properties.Resources.WhatsApp_Image_2025_04_28_at_02_09_09_2581277f;
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.Controls.Add(button2);
             panel2.Controls.Add(label5);

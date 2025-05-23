@@ -294,13 +294,13 @@ namespace Stu
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
         private void button3_Click(object sender, EventArgs e)
         {
             try
             {
-                
+
                 if (dataGridView1.DataSource == null || dataGridView1.Rows.Count == 0)
                 {
                     MessageBox.Show("جدول خالی است. لطفاً ابتدا داده‌ها را بارگذاری کنید.", "خطا",
@@ -308,25 +308,25 @@ namespace Stu
                     return;
                 }
 
-                
+
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 string folderPath = Path.Combine(desktopPath, "گزارش‌گیری کلی");
-                Directory.CreateDirectory(folderPath); 
-                string fileName = $"گزارش_کلی_{DateTime.Now:yyyyMMdd_HHmmss}.pdf"; 
+                Directory.CreateDirectory(folderPath);
+                string fileName = $"گزارش_کلی_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                 string filePath = Path.Combine(folderPath, fileName);
 
-                
-                QuestPDF.Settings.License = LicenseType.Community; 
 
-                
+                QuestPDF.Settings.License = LicenseType.Community;
+
+
                 Document.Create(container =>
                 {
-                   
+
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        if (row.IsNewRow) continue; 
+                        if (row.IsNewRow) continue;
 
-                        
+
                         string firstName = row.Cells["FirstName"].Value?.ToString() ?? "نامشخص";
                         string lastName = row.Cells["LastName"].Value?.ToString() ?? "نامشخص";
                         string schoolYear = row.Cells["SchoolYear"].Value?.ToString() ?? "نامشخص";
@@ -338,7 +338,7 @@ namespace Stu
                         string description2 = row.Cells["Description2"].Value?.ToString() ?? "نامشخص";
                         string description3 = row.Cells["Description3"].Value?.ToString() ?? "نامشخص";
 
-                       
+
                         container.Page(page =>
                         {
                             page.Size(PageSizes.A4);
@@ -433,9 +433,20 @@ namespace Stu
                 frmEditInfo NextForm = new frmEditInfo();
                 NextForm.Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show($"خطا در بارگذاری فرم جدید \n {ex.Message}","خطا", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show($"خطا در بارگذاری فرم جدید \n {ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطا در بستن فرم \n {ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
