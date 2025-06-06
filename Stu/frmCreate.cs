@@ -18,7 +18,6 @@ namespace Stu
 
 
 
-            // بارگذاری کارگروه‌ها
             LoadSkillGroups(comboBox2);
             LoadSkillGroups(comboBox3);
             LoadSkillGroups(comboBox4);
@@ -97,7 +96,6 @@ namespace Stu
                 {
                     connection.Open();
 
-                    // ثبت دانش‌آموز در جدول Student
                     string insertStudentQuery = @"
                         INSERT INTO Student (FirstName, LastName, SchoolYear, LevelStudent, 
                                           Skill1, Skill2, Skill3, Description1, Description2, Description3)

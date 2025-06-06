@@ -48,6 +48,7 @@
             label4 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            button6 = new Button();
             button5 = new Button();
             button4 = new Button();
             button3 = new Button();
@@ -196,7 +197,7 @@
             // 
             button2.Anchor = AnchorStyles.None;
             button2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(759, 222);
+            button2.Location = new Point(914, 218);
             button2.Name = "button2";
             button2.Size = new Size(223, 37);
             button2.TabIndex = 17;
@@ -244,6 +245,7 @@
             // 
             panel2.BackgroundImage = Properties.Resources.WhatsApp_Image_2025_04_28_at_02_09_09_2581277f;
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.Controls.Add(button6);
             panel2.Controls.Add(button5);
             panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
@@ -266,6 +268,17 @@
             panel2.Size = new Size(1633, 536);
             panel2.TabIndex = 21;
             // 
+            // button6
+            // 
+            button6.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button6.Location = new Point(467, 219);
+            button6.Name = "button6";
+            button6.Size = new Size(156, 37);
+            button6.TabIndex = 24;
+            button6.Text = "مدیریت مربی";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
             // button5
             // 
             button5.Anchor = AnchorStyles.None;
@@ -282,7 +295,7 @@
             // 
             button4.Anchor = AnchorStyles.None;
             button4.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.Location = new Point(497, 222);
+            button4.Location = new Point(686, 219);
             button4.Name = "button4";
             button4.RightToLeft = RightToLeft.No;
             button4.Size = new Size(145, 34);
@@ -295,7 +308,7 @@
             // 
             button3.Anchor = AnchorStyles.None;
             button3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.Location = new Point(1088, 217);
+            button3.Location = new Point(1176, 217);
             button3.Name = "button3";
             button3.Size = new Size(221, 39);
             button3.TabIndex = 21;
@@ -356,5 +369,6 @@
         private DataGridViewButtonColumn PDF;
         private Button button4;
         private Button button5;
+        private Button button6;
     }
 }

@@ -13,12 +13,10 @@ public static class DatabaseHelper
 
     static DatabaseHelper()
     {
-        // مسیرهای منبع (در پوشه نصب)
         string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
         string sourceMdf = Path.Combine(appDirectory, "Database", "School.mdf");
         string sourceLdf = Path.Combine(appDirectory, "Database", "School_log.ldf");
 
-        // مسیرهای مقصد در LocalAppData
         _databaseFolder = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             "schoolApp",
@@ -27,13 +25,10 @@ public static class DatabaseHelper
         _targetMdfPath = Path.Combine(_databaseFolder, "school.mdf");
         _targetLdfPath = Path.Combine(_databaseFolder, "school_log.ldf");
 
-        // ایجاد پوشه مقصد اگر وجود ندارد
         Directory.CreateDirectory(_databaseFolder);
 
-        // کپی فایل‌های دیتابیس اگر نیاز باشد
         InitializeDatabaseFiles(sourceMdf, sourceLdf);
 
-        // رشته اتصال
         _connectionString = $@"Data Source=(LocalDB)\ProjectsV16;
                             AttachDbFilename={_targetMdfPath};
                             Integrated Security=True;
@@ -45,16 +40,13 @@ public static class DatabaseHelper
     {
         try
         {
-            // فقط اگر فایل مقصد وجود ندارد یا نسخه منبع جدیدتر است
             bool needCopy = !File.Exists(_targetMdfPath) ||
                           (File.Exists(sourceMdf) && File.GetLastWriteTime(sourceMdf) > File.GetLastWriteTime(_targetMdfPath));
 
             if (needCopy)
             {
-                // دیتابیس موجود را detach کنیم (اگر در حال استفاده است)
                 DetachDatabaseIfNeeded();
 
-                // کپی فایل‌ها
                 if (File.Exists(sourceMdf))
                 {
                     File.Copy(sourceMdf, _targetMdfPath, overwrite: true);

@@ -152,7 +152,6 @@ namespace Stu
         {
             try
             {
-                // دریافت اطلاعات دانش‌آموز از ردیف انتخاب‌شده
                 var row = dataGridView1.Rows[rowIndex];
                 string firstName = row.Cells["FirstName"].Value?.ToString() ?? "نامشخص";
                 string lastName = row.Cells["LastName"].Value?.ToString() ?? "نامشخص";
@@ -165,17 +164,14 @@ namespace Stu
                 string description2 = row.Cells["Description2"].Value?.ToString() ?? "نامشخص";
                 string description3 = row.Cells["Description3"].Value?.ToString() ?? "نامشخص";
 
-                // تنظیم مسیر پوشه و نام فایل PDF
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 string folderPath = Path.Combine(desktopPath, "گزارش دانش‌آموزان");
-                Directory.CreateDirectory(folderPath); // ایجاد پوشه اگر وجود نداشته باشد
+                Directory.CreateDirectory(folderPath); 
                 string fileName = $"{firstName}_{lastName}.pdf";
                 string filePath = Path.Combine(folderPath, fileName);
 
-                // تنظیمات QuestPDF
-                QuestPDF.Settings.License = LicenseType.Community; // برای استفاده رایگان
+                QuestPDF.Settings.License = LicenseType.Community;
 
-                // ایجاد سند PDF
                 Document.Create(container =>
                 {
                     container.Page(page =>
@@ -183,35 +179,31 @@ namespace Stu
                         page.Size(PageSizes.A4);
                         page.Margin(2, Unit.Centimetre);
                         page.PageColor(Colors.White);
-                        page.ContentFromRightToLeft(); // تنظیم content direction به RTL
-                        page.DefaultTextStyle(x => x.FontSize(12).FontFamily("Arial")); // فونت Arial برای فارسی
+                        page.ContentFromRightToLeft();
+                        page.DefaultTextStyle(x => x.FontSize(12).FontFamily("Arial"));
 
-                        // سربرگ
                         page.Header()
                             .PaddingBottom(10)
                             .Text("گزارش اطلاعات دانش‌آموز")
                             .SemiBold().FontSize(20).FontColor(Colors.Blue.Medium)
                             .AlignCenter();
 
-                        // محتوای اصلی (جدول)
                         page.Content()
                             .PaddingVertical(1, Unit.Centimetre)
                             .Table(table =>
                             {
                                 table.ColumnsDefinition(columns =>
                                 {
-                                    columns.ConstantColumn(150); // ستون عنوان
-                                    columns.RelativeColumn();   // ستون مقدار
+                                    columns.ConstantColumn(150);
+                                    columns.RelativeColumn();
                                 });
 
-                                // تنظیمات جدول
                                 table.Header(header =>
                                 {
                                     header.Cell().Background(Colors.Grey.Lighten2).Padding(5).Text("عنوان").Bold();
                                     header.Cell().Background(Colors.Grey.Lighten2).Padding(5).Text("مقدار").Bold();
                                 });
 
-                                // اضافه کردن ردیف‌ها
                                 void AddRow(string label, string value)
                                 {
                                     table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(5).Text(label);
@@ -230,7 +222,6 @@ namespace Stu
                                 AddRow("توضیحات ۳", description3);
                             });
 
-                        // پاورقی
                         page.Footer()
                             .AlignCenter()
                             .Text(x =>
@@ -357,38 +348,35 @@ namespace Stu
                                 .PaddingVertical(1, Unit.Centimetre)
                                 .Column(column =>
                                 {
-                                    // نمایش نام و نام خانوادگی بالای جدول
                                     column.Item()
                                         .PaddingVertical(10)
                                         .Text($"دانش‌آموز: {firstName} {lastName}")
                                         .FontSize(14).Bold();
 
-                                    // ایجاد جدول برای اطلاعات دانش‌آموز
                                     column.Item()
                                         .PaddingBottom(10)
                                         .Table(table =>
                                         {
                                             table.ColumnsDefinition(columns =>
                                             {
-                                                columns.ConstantColumn(150); // ستون عنوان
-                                                columns.RelativeColumn();   // ستون مقدار
+                                                columns.ConstantColumn(150);
+                                                columns.RelativeColumn(); 
                                             });
 
-                                            // سرستون‌های جدول
                                             table.Header(header =>
                                             {
                                                 header.Cell().Background(Colors.Grey.Lighten2).Padding(5).Text("عنوان").Bold();
                                                 header.Cell().Background(Colors.Grey.Lighten2).Padding(5).Text("مقدار").Bold();
                                             });
 
-                                            // تابع کمکی برای اضافه کردن ردیف به جدول
+                                            
                                             void AddRow(string label, string value)
                                             {
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(5).Text(label);
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(5).Text(value);
                                             }
 
-                                            // اضافه کردن ردیف‌های اطلاعات )
+                                          
                                             AddRow("نام", firstName);
                                             AddRow("نام خانوادگی", lastName);
                                             AddRow("سال ورود", schoolYear);
@@ -402,7 +390,6 @@ namespace Stu
                                         });
                                 });
 
-                            // پاورقی
                             page.Footer()
                                 .AlignCenter()
                                 .Text(x =>
@@ -414,7 +401,7 @@ namespace Stu
                                 });
                         });
                     }
-                }).GeneratePdf(filePath); // ذخیره فایل PDF در مسیر مشخص‌شده
+                }).GeneratePdf(filePath);
 
                 MessageBox.Show($"فایل PDF با موفقیت در {filePath} ذخیره شد.", "موفقیت",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -432,6 +419,7 @@ namespace Stu
             {
                 frmEditInfo NextForm = new frmEditInfo();
                 NextForm.Show();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -442,6 +430,20 @@ namespace Stu
         {
             try
             {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطا در بستن فرم \n {ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmInstructor newfrm = new frmInstructor();
+                newfrm.Show();
                 this.Close();
             }
             catch (Exception ex)
