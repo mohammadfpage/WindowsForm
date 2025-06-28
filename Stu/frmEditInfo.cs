@@ -31,7 +31,7 @@ namespace Stu
                             }
                             else
                             {
-                                MessageBox.Show("کاربری با نقش مدیر یافت نشد.", "خطا",
+                                MessageBox.Show(".کاربری با نقش مدیر یافت نشد", "خطا",
                                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
@@ -49,7 +49,7 @@ namespace Stu
                             }
                             else
                             {
-                                MessageBox.Show("کاربری با نقش معاون یافت نشد.", "خطا",
+                                MessageBox.Show(".کاربری با نقش معاون یافت نشد", "خطا",
                                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
@@ -71,7 +71,7 @@ namespace Stu
 
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 {
-                    MessageBox.Show("لطفاً نام کاربری و رمز عبور مدیر را وارد کنید.", "خطا",
+                    MessageBox.Show(".لطفاً نام کاربری و رمز عبور مدیر را وارد کنید", "خطا",
                                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -85,7 +85,7 @@ namespace Stu
                         int count = (int)checkCommand.ExecuteScalar();
                         if (count == 0)
                         {
-                            MessageBox.Show("کاربری با نقش مدیر یافت نشد.", "خطا",
+                            MessageBox.Show(".کاربری با نقش مدیر یافت نشد", "خطا",
                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
@@ -100,12 +100,12 @@ namespace Stu
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("اطلاعات مدیر با موفقیت به‌روزرسانی شد.", "موفقیت",
+                            MessageBox.Show(".اطلاعات مدیر با موفقیت به‌روزرسانی شد", "موفقیت",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("به‌روزرسانی اطلاعات مدیر ناموفق بود.", "خطا",
+                            MessageBox.Show(".به‌روزرسانی اطلاعات مدیر ناموفق بود", "خطا",
                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
@@ -113,7 +113,7 @@ namespace Stu
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در به‌روزرسانی اطلاعات مدیر:\n{ex.Message}", "خطا",
+                MessageBox.Show($":خطا در به‌روزرسانی اطلاعات مدیر\n{ex.Message}", "خطا",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -126,7 +126,7 @@ namespace Stu
 
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 {
-                    MessageBox.Show("لطفاً نام کاربری و رمز عبور معاون را وارد کنید.", "خطا",
+                    MessageBox.Show(".لطفاً نام کاربری و رمز عبور معاون را وارد کنید", "خطا",
                                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -141,7 +141,7 @@ namespace Stu
                         int count = (int)checkCommand.ExecuteScalar();
                         if (count == 0)
                         {
-                            MessageBox.Show("کاربری با نقش معاون یافت نشد.", "خطا",
+                            MessageBox.Show(".کاربری با نقش معاون یافت نشد", "خطا",
                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
@@ -155,12 +155,12 @@ namespace Stu
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("اطلاعات معاون با موفقیت به‌روزرسانی شد.", "موفقیت",
+                            MessageBox.Show(".اطلاعات معاون با موفقیت به‌روزرسانی شد", "موفقیت",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("به‌روزرسانی اطلاعات معاون ناموفق بود.", "خطا",
+                            MessageBox.Show(".به‌روزرسانی اطلاعات معاون ناموفق بود", "خطا",
                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
@@ -176,12 +176,11 @@ namespace Stu
         {
             try
             {
-
                 this.Close();
             }
             catch(Exception ex)
             {
-                MessageBox.Show($"خطا در باز کردن فرم جدید:\n{ex.Message}", "خطا",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"خطا در خروج فرم جدید:\n{ex.Message}", "خطا",MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }

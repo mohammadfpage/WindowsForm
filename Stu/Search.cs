@@ -20,7 +20,6 @@ namespace Stu
             ConfigureDataGridView();
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
         }
-
         private void ConfigureDataGridView()
         {
             dataGridView1.RightToLeft = RightToLeft.Yes;
@@ -41,13 +40,11 @@ namespace Stu
                 dataGridView1.Columns.Add(pdfColumn);
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
-
             string firstName = textBox1.Text.Trim();
             string lastName = textBox2.Text.Trim();
             string entranceYearText = comboBox1.SelectedItem?.ToString();
@@ -56,11 +53,10 @@ namespace Stu
             if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName) &&
                 string.IsNullOrEmpty(entranceYearText) && string.IsNullOrEmpty(levelStudent))
             {
-                MessageBox.Show("لطفاً حداقل یکی از فیلدها را وارد یا انتخاب کنید.", "خطا",
+                MessageBox.Show(".لطفاً حداقل یکی از فیلدها را وارد یا انتخاب کنید", "خطا",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             try
             {
                 DataTable result = SearchStudents(firstName, lastName, entranceYearText, levelStudent);
@@ -73,7 +69,7 @@ namespace Stu
                 else
                 {
                     dataGridView1.Visible = false;
-                    MessageBox.Show("دانش‌آموزی با مشخصات وارد شده یافت نشد.", "نتیجه جستجو",
+                    MessageBox.Show(".دانش‌آموزی با مشخصات وارد شده یافت نشد", "نتیجه جستجو",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -208,7 +204,6 @@ namespace Stu
                     MessageBox.Show("شناسه دانش‌آموز نامعتبر است.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
                 int studentId = Convert.ToInt32(row.Cells["StudentId"].Value);
                 string firstName = row.Cells["FirstName"].Value?.ToString() ?? "نامشخص";
                 string lastName = row.Cells["LastName"].Value?.ToString() ?? "نامشخص";
@@ -237,14 +232,12 @@ namespace Stu
                     MessageBox.Show($"هیچ ارزیابی برای دانش‌آموز {firstName} {lastName} یافت نشد.", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 string folderPath = Path.Combine(desktopPath, "گزارش تکی");
                 Directory.CreateDirectory(folderPath);
                 string fileName = $"گزارش_{firstName}_{lastName}_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                 string filePath = Path.Combine(folderPath, fileName);
                 QuestPDF.Settings.License = LicenseType.Community;
-
                 Document.Create(container =>
                 {
                     for (int i = 0; i < 3; i++)
@@ -252,7 +245,7 @@ namespace Stu
                         if (!skillIds[i].HasValue) continue;
                         int skillNumber = i + 1;
                         var evaluations = skillEvaluations.FirstOrDefault(e => e.SkillNumber == skillNumber);
-                        if (evaluations == null) continue; // جلوگیری از ایجاد صفحات خالی
+                        if (evaluations == null) continue;
 
                         string[] evaluationValues = new[]
                         {
@@ -266,7 +259,6 @@ namespace Stu
                         };
                         string instructorName = skillInstructors[i];
                         string description = skillDescriptions[i];
-
                         container.Page(page =>
                         {
                             page.Size(PageSizes.A4);
@@ -275,12 +267,10 @@ namespace Stu
                             page.ContentFromRightToLeft();
                             page.DefaultTextStyle(x => x.FontSize(14).FontFamily("B Nazanin").Bold().Fallback(x => x.FontFamily("Arial")));
 
-                            // حاشیه کل صفحه
                             page.Background()
                                 .Border(1, Unit.Millimetre)
                                 .BorderColor(Colors.Blue.Darken2);
 
-                            // هدر گزارش
                             page.Header()
                                 .PaddingBottom(15)
                                 .BorderBottom(1, Unit.Millimetre)
@@ -304,8 +294,6 @@ namespace Stu
                                     col.Item().PaddingTop(5).Text($"تاریخ گزارش: {DateTime.Now:yyyy/MM/dd}")
                                         .FontSize(14).Bold().FontColor(Colors.Grey.Darken2);
                                 });
-
-                            // محتوا
                             page.Content()
                                 .PaddingVertical(1.5f, Unit.Centimetre)
                                 .Border(0.5f, Unit.Millimetre)
@@ -319,11 +307,10 @@ namespace Stu
                                         table.ColumnsDefinition(cols =>
                                         {
                                             cols.RelativeColumn(2.5f);
+                                            cols.ConstantColumn(70);
                                             cols.ConstantColumn(60);
-                                            cols.ConstantColumn(60);
-                                            cols.ConstantColumn(60);
+                                            cols.ConstantColumn(70);
                                         });
-
                                         table.Header(header =>
                                         {
                                             header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("معیار").FontSize(14).Bold();
@@ -331,7 +318,6 @@ namespace Stu
                                             header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("مطلوب").FontSize(14).Bold();
                                             header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("رو به رشد").FontSize(14).Bold();
                                         });
-
                                         string[] criteria = new[]
                                         {
                                             "مسئولیت‌پذیری",
@@ -361,7 +347,6 @@ namespace Stu
                                         .FontSize(13).LineHeight(1.2f);
                                 });
 
-                            // فوتر
                             page.Footer()
                                 .AlignCenter()
                                 .Text(x =>
@@ -392,7 +377,6 @@ namespace Stu
                               MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             try
             {
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -407,7 +391,6 @@ namespace Stu
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
                         if (row.IsNewRow) continue;
-
                         int studentId = Convert.ToInt32(row.Cells["StudentId"].Value);
                         string firstName = row.Cells["FirstName"].Value?.ToString() ?? "نامشخص";
                         string lastName = row.Cells["LastName"].Value?.ToString() ?? "نامشخص";
@@ -429,7 +412,6 @@ namespace Stu
                         skillDescriptions[0] = row.Cells["Skill1Description"].Value?.ToString() ?? "بدون توضیحات";
                         skillDescriptions[1] = row.Cells["Skill2Description"].Value?.ToString() ?? "بدون توضیحات";
                         skillDescriptions[2] = row.Cells["Skill3Description"].Value?.ToString() ?? "بدون توضیحات";
-
                         var skillEvaluations = GetStudentSkillEvaluations(studentId);
                         if (!skillEvaluations.Any()) continue;
 
@@ -438,7 +420,7 @@ namespace Stu
                             if (!skillIds[i].HasValue) continue;
                             int skillNumber = i + 1;
                             var evaluations = skillEvaluations.FirstOrDefault(e => e.SkillNumber == skillNumber);
-                            if (evaluations == null) continue; // جلوگیری از ایجاد صفحات خالی
+                            if (evaluations == null) continue;
 
                             string[] evaluationValues = new[]
                             {
@@ -452,7 +434,6 @@ namespace Stu
                             };
                             string instructorName = skillInstructors[i];
                             string description = skillDescriptions[i];
-
                             container.Page(page =>
                             {
                                 page.Size(PageSizes.A4);
@@ -461,12 +442,10 @@ namespace Stu
                                 page.ContentFromRightToLeft();
                                 page.DefaultTextStyle(x => x.FontSize(14).FontFamily("B Nazanin").Bold().Fallback(x => x.FontFamily("Arial")));
 
-                                // حاشیه کل صفحه
                                 page.Background()
                                     .Border(1, Unit.Millimetre)
                                     .BorderColor(Colors.Blue.Darken2);
 
-                                // هدر گزارش
                                 page.Header()
                                     .PaddingBottom(15)
                                     .BorderBottom(1, Unit.Millimetre)
@@ -490,8 +469,6 @@ namespace Stu
                                         col.Item().PaddingTop(5).Text($"تاریخ گزارش: {DateTime.Now:yyyy/MM/dd}")
                                             .FontSize(14).Bold().FontColor(Colors.Grey.Darken2);
                                     });
-
-                                // محتوا
                                 page.Content()
                                     .PaddingVertical(1.5f, Unit.Centimetre)
                                     .Border(0.5f, Unit.Millimetre)
@@ -505,11 +482,10 @@ namespace Stu
                                             table.ColumnsDefinition(cols =>
                                             {
                                                 cols.RelativeColumn(2.5f);
+                                                cols.ConstantColumn(70);
                                                 cols.ConstantColumn(60);
-                                                cols.ConstantColumn(60);
-                                                cols.ConstantColumn(60);
+                                                cols.ConstantColumn(70);
                                             });
-
                                             table.Header(header =>
                                             {
                                                 header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("معیار").FontSize(14).Bold();
@@ -517,7 +493,6 @@ namespace Stu
                                                 header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("مطلوب").FontSize(14).Bold();
                                                 header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("رو به رشد").FontSize(14).Bold();
                                             });
-
                                             string[] criteria = new[]
                                             {
                                                 "مسئولیت‌پذیری",
@@ -528,7 +503,6 @@ namespace Stu
                                                 "پویایی و نشاط در انجام فعالیت",
                                                 "میزان شرکت در کارگروه"
                                             };
-
                                             for (int j = 0; j < criteria.Length; j++)
                                             {
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(criteria[j]).FontSize(13);
@@ -540,14 +514,11 @@ namespace Stu
                                                     .Text(evaluationValues[j] == "رو به رشد" ? "✓" : "").FontSize(13);
                                             }
                                         });
-
                                         col.Item().PaddingTop(15).Text("توضیحات مربی:")
                                             .FontSize(15).Bold().FontColor(Colors.Black);
                                         col.Item().PaddingTop(8).Text(description)
                                             .FontSize(13).LineHeight(1.2f);
                                     });
-
-                                // فوتر
                                 page.Footer()
                                     .AlignCenter()
                                     .Text(x =>

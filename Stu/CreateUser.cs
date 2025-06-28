@@ -317,15 +317,12 @@ WHERE
                             page.Margin(2, Unit.Centimetre);
                             page.PageColor(Colors.White);
                             page.ContentFromRightToLeft();
-                            // تنظیم فونت پیش‌فرض با B Nazanin و سایز بزرگ‌تر
                             page.DefaultTextStyle(x => x.FontSize(14).FontFamily("B Nazanin").Bold());
 
-                            // اضافه کردن حاشیه به کل صفحه
                             page.Background()
                                 .Border(1, Unit.Millimetre)
                                 .BorderColor(Colors.Blue.Darken2);
 
-                            // هدر با طراحی زیباتر
                             page.Header()
                                 .PaddingBottom(15)
                                 .BorderBottom(1, Unit.Millimetre)
@@ -346,7 +343,6 @@ WHERE
                                         .FontSize(15).ExtraBold();
                                 });
 
-                            // محتوا با جدول بهبودیافته
                             page.Content()
                                 .PaddingVertical(1.5f, Unit.Centimetre)
                                 .Border(0.5f, Unit.Millimetre)
@@ -359,13 +355,12 @@ WHERE
                                     {
                                         table.ColumnsDefinition(columns =>
                                         {
-                                            columns.RelativeColumn(2.5f); // ستون معیار عریض‌تر
+                                            columns.RelativeColumn(2.5f);
+                                            columns.ConstantColumn(70);
                                             columns.ConstantColumn(60);
-                                            columns.ConstantColumn(60);
-                                            columns.ConstantColumn(60);
+                                            columns.ConstantColumn(70);
                                         });
 
-                                        // هدر جدول با فونت پررنگ و طراحی بهتر
                                         table.Header(header =>
                                         {
                                             header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("معیار").FontSize(14).Bold();
@@ -394,14 +389,12 @@ WHERE
                                         }
                                     });
 
-                                    // توضیحات با فونت پررنگ و فاصله مناسب
                                     column.Item().PaddingTop(15).Text("توضیح عملکرد دانش‌آموز در کارگروه مربوطه:")
                                         .FontSize(15).Bold().FontColor(Colors.Black);
                                     column.Item().PaddingTop(8).Text(description)
                                         .FontSize(13).LineHeight(1.2f);
                                 });
 
-                            // فوتر با طراحی زیباتر
                             page.Footer()
                                 .AlignCenter()
                                 .Text(x =>
@@ -632,15 +625,11 @@ WHERE
                                 page.Margin(2, Unit.Centimetre);
                                 page.PageColor(Colors.White);
                                 page.ContentFromRightToLeft();
-                                // تنظیم فونت پیش‌فرض با B Nazanin و سایز بزرگ‌تر
                                 page.DefaultTextStyle(x => x.FontSize(14).FontFamily("B Nazanin").Bold());
-
-                                // اضافه کردن حاشیه به کل صفحه
                                 page.Background()
                                     .Border(1, Unit.Millimetre)
                                     .BorderColor(Colors.Blue.Darken2);
 
-                                // هدر با طراحی زیباتر
                                 page.Header()
                                     .PaddingBottom(15)
                                     .BorderBottom(1, Unit.Millimetre)
@@ -661,7 +650,6 @@ WHERE
                                             .FontSize(15).ExtraBold();
                                     });
 
-                                // محتوا با جدول بهبودیافته
                                 page.Content()
                                     .PaddingVertical(1.5f, Unit.Centimetre)
                                     .Border(0.5f, Unit.Millimetre)
@@ -675,9 +663,9 @@ WHERE
                                             table.ColumnsDefinition(columns =>
                                             {
                                                 columns.RelativeColumn(2.5f);
+                                                columns.ConstantColumn(70);
                                                 columns.ConstantColumn(60);
-                                                columns.ConstantColumn(60);
-                                                columns.ConstantColumn(60);
+                                                columns.ConstantColumn(70);
                                             });
 
                                             table.Header(header =>

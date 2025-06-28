@@ -25,7 +25,7 @@ namespace Stu
             { "Aestimatio_peritiae4", null },
             { "Aestimatio_peritiae5", null },
             { "Aestimatio_peritiae6", null },
-            { "Aestimatio_peritiae7", null } // جدید: میزان شرکت در کارگروه
+            { "Aestimatio_peritiae7", null } 
         };
 
         private readonly string[] criterionStatuses = { "نیاز به رشد", "مطلوب", "رو به رشد" };
@@ -34,7 +34,7 @@ namespace Stu
         {
             if (studentId <= 0 || skillGroupId <= 0 || skillNumber <= 0)
             {
-                MessageBox.Show("شناسه دانش‌آموز، گروه مهارتی یا شماره مهارت نامعتبر است.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("شناسه دانش‌آموز گروه مهارتی یا شماره مهارت نامعتبر است", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
                 return;
             }
@@ -58,10 +58,9 @@ namespace Stu
                     label5 == null || label6 == null || label8 == null || label9 == null ||
                     richTextBox1 == null)
                 {
-                    throw new Exception("یکی از کنترل‌های فرم به‌درستی تعریف نشده است.");
+                    throw new Exception(".یکی از کنترل‌های فرم به‌درستی تعریف نشده است");
                 }
 
-                // تنظیم برچسب‌ها
                 label4.Text = "مسئولیت‌پذیری";
                 label2.Text = "استفاده بهینه از ابزار";
                 label3.Text = "مشارکت در کار گروهی";
@@ -70,7 +69,6 @@ namespace Stu
                 label8.Text = "پویایی و نشاط در انجام فعالیت";
                 label9.Text = "میزان شرکت در کارگروه";
 
-                // اتصال کامبوباکس‌ها به کلیدها
                 comboBoxMapping["Aestimatio_peritiae1"] = comboBox1;
                 comboBoxMapping["Aestimatio_peritiae2"] = comboBox2;
                 comboBoxMapping["Aestimatio_peritiae3"] = comboBox3;
@@ -79,7 +77,6 @@ namespace Stu
                 comboBoxMapping["Aestimatio_peritiae6"] = comboBox4;
                 comboBoxMapping["Aestimatio_peritiae7"] = comboBox7;
 
-                // پر کردن آیتم‌ها
                 foreach (var combo in comboBoxMapping.Values)
                 {
                     foreach (var status in criterionStatuses)
@@ -178,7 +175,6 @@ namespace Stu
                     {
                         try
                         {
-                            // بازیابی نام مربی از SkillGroups و Instructor
                             string instructorName = null;
                             string queryInstructor = @"
                         SELECT i.Name + ' ' + i.Family AS InstructorName
@@ -197,7 +193,6 @@ namespace Stu
 
                             if (currentEvaluationId.HasValue)
                             {
-                                // به‌روزرسانی ارزیابی موجود
                                 string updateQuery = @"
                             UPDATE StudentSkillEvaluation 
                             SET EvaluationDate = GETDATE(),
@@ -228,7 +223,6 @@ namespace Stu
                             }
                             else
                             {
-                                // ثبت ارزیابی جدید
                                 string insertQuery = @"
                             INSERT INTO StudentSkillEvaluation (
                                 StudentId, SkillGroupId, EvaluationDate,

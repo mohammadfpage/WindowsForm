@@ -77,11 +77,9 @@ namespace Stu
                         {
                             if (reader.Read())
                             {
-                                // اطلاعات پایه
                                 textBox1.Text = reader["FirstName"] != DBNull.Value ? reader["FirstName"].ToString() : "";
                                 textBox2.Text = reader["LastName"] != DBNull.Value ? reader["LastName"].ToString() : "";
 
-                                // سال تحصیلی
                                 if (reader["SchoolYear"] != DBNull.Value)
                                 {
                                     string year = reader["SchoolYear"].ToString();
@@ -98,7 +96,6 @@ namespace Stu
                                     comboBox1.SelectedIndex = 0;
                                 }
 
-                                // سطح دانش‌آموز
                                 if (reader["LevelStudent"] != DBNull.Value)
                                 {
                                     string level = reader["LevelStudent"].ToString();
@@ -115,7 +112,6 @@ namespace Stu
                                     comboBox5.SelectedIndex = 0;
                                 }
 
-                                // مهارت‌ها
                                 SetSelectedValueSafe(comboBox4, reader["Skill1"]);
                                 SetSelectedValueSafe(comboBox3, reader["Skill2"]);
                                 SetSelectedValueSafe(comboBox2, reader["Skill3"]);
@@ -136,7 +132,6 @@ namespace Stu
             }
             finally
             {
-                // فعال کردن مجدد رویدادها
                 textBox1.TextChanged += textBox1_TextChanged;
                 textBox2.TextChanged += textBox2_TextChanged;
             }
@@ -207,28 +202,27 @@ namespace Stu
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("اطلاعات با موفقیت ویرایش شد.", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(".اطلاعات با موفقیت ویرایش شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("هیچ رکوردی ویرایش نشد.", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(".هیچ رکوردی ویرایش نشد", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در ویرایش اطلاعات: {ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($":خطا در ویرایش اطلاعات {ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            // اعتبارسنجی نام
             if (textBox1.Text.Length > 50)
             {
-                MessageBox.Show("نام نمی‌تواند بیش از 50 کاراکتر باشد.", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(".نام نمی‌تواند بیش از 50 کاراکتر باشد", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox1.Text = textBox1.Text.Substring(0, 50);
                 textBox1.SelectionStart = textBox1.Text.Length;
             }
@@ -236,10 +230,9 @@ namespace Stu
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            // اعتبارسنجی نام خانوادگی
             if (textBox2.Text.Length > 50)
             {
-                MessageBox.Show("نام خانوادگی نمی‌تواند بیش از 50 کاراکتر باشد.", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(".نام خانوادگی نمی‌تواند بیش از 50 کاراکتر باشد", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox2.Text = textBox2.Text.Substring(0, 50);
                 textBox2.SelectionStart = textBox2.Text.Length;
             }
@@ -271,7 +264,7 @@ namespace Stu
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در بازکردن فرم جدید:\n{ex.Message}","خطا",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show($":خطا در بازکردن فرم جدید\n{ex.Message}","خطا",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
     }

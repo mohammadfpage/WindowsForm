@@ -41,7 +41,7 @@ namespace Stu
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در بارگذاری کارگروه‌ها:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($":خطا در بارگذاری کارگروه‌ها\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -51,12 +51,12 @@ namespace Stu
 
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(family))
             {
-                MessageBox.Show("لطفاً نام و نام خانوادگی مربی را وارد کنید!", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("!لطفاً نام و نام خانوادگی مربی را وارد کنید", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (comboBox1.SelectedIndex == -1)
             {
-                MessageBox.Show("لطفاً یک کارگروه انتخاب کنید!", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("!لطفاً یک کارگروه انتخاب کنید", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             try
@@ -80,7 +80,7 @@ namespace Stu
                         command.Parameters.AddWithValue("@SkillGroupId", skillGroupId);
                         command.ExecuteNonQuery();
                     }
-                    MessageBox.Show("مربی و کارگروه با موفقیت ثبت شدند!", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("!مربی و کارگروه با موفقیت ثبت شدند", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     textBox1.Clear();
                     textBox2.Clear();
                     comboBox1.SelectedIndex = -1;
@@ -124,7 +124,7 @@ namespace Stu
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در بارگذاری مربی‌ها:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($":خطا در بارگذاری مربی‌ها\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 dataGridView1.Visible = false;
             }
         }
@@ -151,7 +151,7 @@ namespace Stu
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در انتخاب مربی:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($":خطا در انتخاب مربی\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void button2_Click(object sender, EventArgs e)
@@ -162,7 +162,7 @@ namespace Stu
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در باز کردن فرم جدید:\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($":خطا در خروج از صفحه جدید\n{ex.Message}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void panel2_Paint(object sender, PaintEventArgs e)
