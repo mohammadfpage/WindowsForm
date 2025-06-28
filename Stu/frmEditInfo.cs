@@ -13,14 +13,12 @@ namespace Stu
 
         private void frmEditInfo_Load(object sender, EventArgs e)
         {
-            // بارگذاری اطلاعات مدیر و معاون هنگام باز شدن فرم
             try
             {
                 using (SqlConnection connection = DatabaseHelper.GetConnection())
                 {
                     connection.Open();
 
-                    // بارگذاری اطلاعات مدیر (RoleId = 1)
                     string adminQuery = "SELECT Username, Password FROM Users WHERE RoleId = 1";
                     using (SqlCommand command = new SqlCommand(adminQuery, connection))
                     {
@@ -39,7 +37,6 @@ namespace Stu
                         }
                     }
 
-                    // بارگذاری اطلاعات معاون (RoleId = 2)
                     string deputyQuery = "SELECT Username, Password FROM Users WHERE RoleId = 2";
                     using (SqlCommand command = new SqlCommand(deputyQuery, connection))
                     {
@@ -65,30 +62,23 @@ namespace Stu
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            // ویرایش نام کاربری و رمز عبور مدیر
             try
             {
-                // دریافت مقادیر ورودی
                 string username = textBox3.Text.Trim();
                 string password = textBox4.Text.Trim();
 
-                // اعتبارسنجی ورودی‌ها
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 {
                     MessageBox.Show("لطفاً نام کاربری و رمز عبور مدیر را وارد کنید.", "خطا",
                                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                // به‌روزرسانی اطلاعات مدیر در پایگاه داده
                 using (SqlConnection connection = DatabaseHelper.GetConnection())
                 {
                     connection.Open();
 
-                    // بررسی وجود مدیر
                     string checkQuery = "SELECT COUNT(*) FROM Users WHERE RoleId = 1";
                     using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
                     {
@@ -101,7 +91,6 @@ namespace Stu
                         }
                     }
 
-                    // به‌روزرسانی نام کاربری و رمز عبور
                     string updateQuery = "UPDATE Users SET Username = @Username, Password = @Password WHERE RoleId = 1";
                     using (SqlCommand command = new SqlCommand(updateQuery, connection))
                     {
@@ -128,17 +117,13 @@ namespace Stu
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            // ویرایش نام کاربری و رمز عبور معاون
             try
             {
-                // دریافت مقادیر ورودی
                 string username = textBox1.Text.Trim();
                 string password = textBox2.Text.Trim();
 
-                // اعتبارسنجی ورودی‌ها
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 {
                     MessageBox.Show("لطفاً نام کاربری و رمز عبور معاون را وارد کنید.", "خطا",
@@ -146,12 +131,10 @@ namespace Stu
                     return;
                 }
 
-                // به‌روزرسانی اطلاعات معاون در پایگاه داده
                 using (SqlConnection connection = DatabaseHelper.GetConnection())
                 {
                     connection.Open();
 
-                    // بررسی وجود معاون
                     string checkQuery = "SELECT COUNT(*) FROM Users WHERE RoleId = 2";
                     using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
                     {
@@ -163,8 +146,6 @@ namespace Stu
                             return;
                         }
                     }
-
-                    // به‌روزرسانی نام کاربری و رمز عبور
                     string updateQuery = "UPDATE Users SET Username = @Username, Password = @Password WHERE RoleId = 2";
                     using (SqlCommand command = new SqlCommand(updateQuery, connection))
                     {
@@ -191,36 +172,12 @@ namespace Stu
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-            // نام کاربری مدیر - بدون نیاز به منطق خاص
-        }
-
-        private void textBox4_TextChanged_1(object sender, EventArgs e)
-        {
-            // رمز عبور مدیر - بدون نیاز به منطق خاص
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            // نام کاربری معاون - بدون نیاز به منطق خاص
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            // رمز عبور معاون - بدون نیاز به منطق خاص
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             try
             {
-                CreateUser NextForm = new CreateUser();
 
-                NextForm.Show();
-                this.Hide();
-
+                this.Close();
             }
             catch(Exception ex)
             {

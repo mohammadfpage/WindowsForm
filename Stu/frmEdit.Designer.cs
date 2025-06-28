@@ -35,12 +35,6 @@ namespace Stu
             panel1 = new Panel();
             panel2 = new Panel();
             button2 = new Button();
-            label11 = new Label();
-            label10 = new Label();
-            label9 = new Label();
-            richTextBox1 = new RichTextBox();
-            richTextBox3 = new RichTextBox();
-            richTextBox2 = new RichTextBox();
             label7 = new Label();
             comboBox5 = new ComboBox();
             label8 = new Label();
@@ -81,12 +75,6 @@ namespace Stu
             panel2.BackgroundImage = Properties.Resources.WhatsApp_Image_2025_04_28_at_02_09_09_2581277f;
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.Controls.Add(button2);
-            panel2.Controls.Add(label11);
-            panel2.Controls.Add(label10);
-            panel2.Controls.Add(label9);
-            panel2.Controls.Add(richTextBox1);
-            panel2.Controls.Add(richTextBox3);
-            panel2.Controls.Add(richTextBox2);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(comboBox5);
             panel2.Controls.Add(label8);
@@ -113,84 +101,13 @@ namespace Stu
             // 
             button2.Anchor = AnchorStyles.None;
             button2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(108, 376);
+            button2.Location = new Point(312, 232);
             button2.Name = "button2";
             button2.Size = new Size(243, 43);
             button2.TabIndex = 65;
-            button2.Text = "بازگشت به صفحه اصلی";
+            button2.Text = "خروج";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
-            // 
-            // label11
-            // 
-            label11.Anchor = AnchorStyles.None;
-            label11.AutoSize = true;
-            label11.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(140, 188);
-            label11.Name = "label11";
-            label11.Size = new Size(211, 24);
-            label11.TabIndex = 64;
-            label11.Text = "توصیف عملکرد کارگروه 3";
-            // 
-            // label10
-            // 
-            label10.Anchor = AnchorStyles.None;
-            label10.AutoSize = true;
-            label10.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(619, 188);
-            label10.Name = "label10";
-            label10.Size = new Size(211, 24);
-            label10.TabIndex = 63;
-            label10.Text = "توصیف عملکرد کارگروه 2";
-            label10.Click += label10_Click;
-            // 
-            // label9
-            // 
-            label9.Anchor = AnchorStyles.None;
-            label9.AutoSize = true;
-            label9.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(1134, 188);
-            label9.Name = "label9";
-            label9.Size = new Size(202, 24);
-            label9.TabIndex = 62;
-            label9.Text = "توصیف عملکر کارگروه 1";
-            // 
-            // richTextBox1
-            // 
-            richTextBox1.Anchor = AnchorStyles.None;
-            richTextBox1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            richTextBox1.Location = new Point(1019, 225);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.RightToLeft = RightToLeft.Yes;
-            richTextBox1.Size = new Size(339, 125);
-            richTextBox1.TabIndex = 61;
-            richTextBox1.Text = "";
-            richTextBox1.TextChanged += richTextBox1_TextChanged;
-            // 
-            // richTextBox3
-            // 
-            richTextBox3.Anchor = AnchorStyles.None;
-            richTextBox3.AutoWordSelection = true;
-            richTextBox3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            richTextBox3.Location = new Point(32, 225);
-            richTextBox3.Name = "richTextBox3";
-            richTextBox3.RightToLeft = RightToLeft.Yes;
-            richTextBox3.Size = new Size(339, 125);
-            richTextBox3.TabIndex = 60;
-            richTextBox3.Text = "";
-            richTextBox3.TextChanged += richTextBox3_TextChanged;
-            // 
-            // richTextBox2
-            // 
-            richTextBox2.Anchor = AnchorStyles.None;
-            richTextBox2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            richTextBox2.Location = new Point(520, 225);
-            richTextBox2.Name = "richTextBox2";
-            richTextBox2.RightToLeft = RightToLeft.Yes;
-            richTextBox2.Size = new Size(339, 125);
-            richTextBox2.TabIndex = 59;
-            richTextBox2.Text = "";
-            richTextBox2.TextChanged += richTextBox2_TextChanged;
             // 
             // label7
             // 
@@ -210,7 +127,7 @@ namespace Stu
             comboBox5.Items.AddRange(new object[] { "چهارم", "پنجم", "ششم", "هفتم", "هشتم", "نهم" });
             comboBox5.Location = new Point(610, 120);
             comboBox5.Name = "comboBox5";
-            comboBox5.RightToLeft = RightToLeft.No;
+            comboBox5.RightToLeft = RightToLeft.Yes;
             comboBox5.Size = new Size(151, 28);
             comboBox5.TabIndex = 58;
             // 
@@ -231,7 +148,7 @@ namespace Stu
             comboBox4.FormattingEnabled = true;
             comboBox4.Location = new Point(419, 120);
             comboBox4.Name = "comboBox4";
-            comboBox4.RightToLeft = RightToLeft.No;
+            comboBox4.RightToLeft = RightToLeft.Yes;
             comboBox4.Size = new Size(151, 28);
             comboBox4.TabIndex = 56;
             // 
@@ -241,7 +158,7 @@ namespace Stu
             comboBox3.FormattingEnabled = true;
             comboBox3.Location = new Point(238, 119);
             comboBox3.Name = "comboBox3";
-            comboBox3.RightToLeft = RightToLeft.No;
+            comboBox3.RightToLeft = RightToLeft.Yes;
             comboBox3.Size = new Size(150, 28);
             comboBox3.TabIndex = 55;
             // 
@@ -251,7 +168,7 @@ namespace Stu
             comboBox2.FormattingEnabled = true;
             comboBox2.Location = new Point(45, 120);
             comboBox2.Name = "comboBox2";
-            comboBox2.RightToLeft = RightToLeft.No;
+            comboBox2.RightToLeft = RightToLeft.Yes;
             comboBox2.Size = new Size(151, 28);
             comboBox2.TabIndex = 54;
             // 
@@ -330,7 +247,7 @@ namespace Stu
             comboBox1.Location = new Point(783, 115);
             comboBox1.MinimumSize = new Size(4, 0);
             comboBox1.Name = "comboBox1";
-            comboBox1.RightToLeft = RightToLeft.No;
+            comboBox1.RightToLeft = RightToLeft.Yes;
             comboBox1.Size = new Size(169, 33);
             comboBox1.TabIndex = 47;
             // 
@@ -357,7 +274,7 @@ namespace Stu
             // 
             button1.Anchor = AnchorStyles.None;
             button1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(610, 376);
+            button1.Location = new Point(792, 231);
             button1.Name = "button1";
             button1.Size = new Size(205, 44);
             button1.TabIndex = 44;

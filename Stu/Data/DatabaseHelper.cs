@@ -35,7 +35,6 @@ public static class DatabaseHelper
                             Connect Timeout=30;
                             MultipleActiveResultSets=True;";
     }
-
     private static void InitializeDatabaseFiles(string sourceMdf, string sourceLdf)
     {
         try
@@ -63,7 +62,6 @@ public static class DatabaseHelper
             Debug.WriteLine($"خطا در مقداردهی اولیه دیتابیس: {ex.Message}");
         }
     }
-
     private static void DetachDatabaseIfNeeded()
     {
         try

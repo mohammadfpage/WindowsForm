@@ -56,12 +56,8 @@ namespace Stu
         {
             try
             {
-                // غیرفعال کردن رویدادها برای جلوگیری از خطا در مقداردهی اولیه
                 textBox1.TextChanged -= textBox1_TextChanged;
                 textBox2.TextChanged -= textBox2_TextChanged;
-                richTextBox1.TextChanged -= richTextBox1_TextChanged;
-                richTextBox2.TextChanged -= richTextBox2_TextChanged;
-                richTextBox3.TextChanged -= richTextBox3_TextChanged;
 
                 using (SqlConnection connection = DatabaseHelper.GetConnection())
                 {
@@ -69,7 +65,7 @@ namespace Stu
 
                     string query = @"
                         SELECT FirstName, LastName, SchoolYear, LevelStudent, 
-                               Skill1, Skill2, Skill3, Description1, Description2, Description3
+                               Skill1, Skill2, Skill3
                         FROM Student
                         WHERE StudentId = @StudentId";
 
@@ -124,10 +120,6 @@ namespace Stu
                                 SetSelectedValueSafe(comboBox3, reader["Skill2"]);
                                 SetSelectedValueSafe(comboBox2, reader["Skill3"]);
 
-                                // توضیحات
-                                richTextBox1.Text = reader["Description1"] != DBNull.Value ? reader["Description1"].ToString() : "";
-                                richTextBox2.Text = reader["Description2"] != DBNull.Value ? reader["Description2"].ToString() : "";
-                                richTextBox3.Text = reader["Description3"] != DBNull.Value ? reader["Description3"].ToString() : "";
                             }
                             else
                             {
@@ -147,12 +139,8 @@ namespace Stu
                 // فعال کردن مجدد رویدادها
                 textBox1.TextChanged += textBox1_TextChanged;
                 textBox2.TextChanged += textBox2_TextChanged;
-                richTextBox1.TextChanged += richTextBox1_TextChanged;
-                richTextBox2.TextChanged += richTextBox2_TextChanged;
-                richTextBox3.TextChanged += richTextBox3_TextChanged;
             }
         }
-
         private void SetSelectedValueSafe(ComboBox comboBox, object value)
         {
             if (value != DBNull.Value)
@@ -181,9 +169,7 @@ namespace Stu
                 int? skill1 = comboBox4.SelectedValue as int?;
                 int? skill2 = comboBox3.SelectedValue as int?;
                 int? skill3 = comboBox2.SelectedValue as int?;
-                string description1 = richTextBox1.Text.Trim();
-                string description2 = richTextBox2.Text.Trim();
-                string description3 = richTextBox3.Text.Trim();
+               
 
                 if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
                 {
@@ -203,10 +189,7 @@ namespace Stu
                             LevelStudent = @LevelStudent,
                             Skill1 = @Skill1,
                             Skill2 = @Skill2,
-                            Skill3 = @Skill3,
-                            Description1 = @Description1,
-                            Description2 = @Description2,
-                            Description3 = @Description3
+                            Skill3 = @Skill3
                         WHERE StudentId = @StudentId";
 
                     using (SqlCommand command = new SqlCommand(updateQuery, connection))
@@ -218,9 +201,6 @@ namespace Stu
                         command.Parameters.AddWithValue("@Skill1", skill1 ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@Skill2", skill2 ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@Skill3", skill3 ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@Description1", string.IsNullOrEmpty(description1) ? DBNull.Value : description1);
-                        command.Parameters.AddWithValue("@Description2", string.IsNullOrEmpty(description2) ? DBNull.Value : description2);
-                        command.Parameters.AddWithValue("@Description3", string.IsNullOrEmpty(description3) ? DBNull.Value : description3);
                         command.Parameters.AddWithValue("@StudentId", _studentId);
 
                         int rowsAffected = command.ExecuteNonQuery();
@@ -279,17 +259,14 @@ namespace Stu
         {
             // توضیح عملکرد 3
         }
-
         private void frmEdit_Load(object sender, EventArgs e) { }
         private void label10_Click(object sender, EventArgs e) { }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             try
             {
-                CreateUser NextForm = new CreateUser();
-                NextForm.Show();
+              
                 this.Hide();
             }
             catch (Exception ex)

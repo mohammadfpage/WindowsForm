@@ -72,7 +72,6 @@
             panel2.RightToLeft = RightToLeft.Yes;
             panel2.Size = new Size(1429, 507);
             panel2.TabIndex = 7;
-            panel2.Paint += panel2_Paint;
             // 
             // label5
             // 
@@ -124,7 +123,6 @@
             textPass.RightToLeft = RightToLeft.No;
             textPass.Size = new Size(207, 32);
             textPass.TabIndex = 3;
-            textPass.TextChanged += textBox2_TextChanged;
             // 
             // textUser
             // 
@@ -135,7 +133,6 @@
             textUser.RightToLeft = RightToLeft.No;
             textUser.Size = new Size(207, 32);
             textUser.TabIndex = 2;
-            textUser.TextChanged += textBox1_TextChanged;
             // 
             // label2
             // 
@@ -160,7 +157,6 @@
             label1.Size = new Size(94, 24);
             label1.TabIndex = 0;
             label1.Text = "نام کاربری";
-            label1.Click += label1_Click;
             // 
             // frmLogin
             // 

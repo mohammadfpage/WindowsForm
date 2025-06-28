@@ -31,9 +31,16 @@
             components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateUser));
             dataGridView1 = new DataGridView();
             edit = new DataGridViewButtonColumn();
+            skillbutton1 = new DataGridViewButtonColumn();
+            skillbutton2 = new DataGridViewButtonColumn();
+            skillbutton3 = new DataGridViewButtonColumn();
             delete = new DataGridViewButtonColumn();
             PDF = new DataGridViewButtonColumn();
             label3 = new Label();
@@ -48,6 +55,7 @@
             label4 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            button7 = new Button();
             button6 = new Button();
             button5 = new Button();
             button4 = new Button();
@@ -65,13 +73,13 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.Anchor = AnchorStyles.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { edit, delete, PDF });
-            dataGridView1.Location = new Point(220, 273);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { edit, skillbutton1, skillbutton2, skillbutton3, delete, PDF });
+            dataGridView1.Location = new Point(23, 273);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RightToLeft = RightToLeft.Yes;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1234, 251);
+            dataGridView1.Size = new Size(1571, 251);
             dataGridView1.TabIndex = 16;
             dataGridView1.Visible = false;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
@@ -79,6 +87,7 @@
             // edit
             // 
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
             dataGridViewCellStyle1.Font = new Font("Tahoma", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             edit.DefaultCellStyle = dataGridViewCellStyle1;
             edit.HeaderText = "ویرایش";
@@ -89,11 +98,54 @@
             edit.UseColumnTextForButtonValue = true;
             edit.Width = 125;
             // 
+            // skillbutton1
+            // 
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(224, 224, 224);
+            skillbutton1.DefaultCellStyle = dataGridViewCellStyle2;
+            skillbutton1.HeaderText = "عملکرد 1";
+            skillbutton1.MinimumWidth = 6;
+            skillbutton1.Name = "skillbutton1";
+            skillbutton1.ReadOnly = true;
+            skillbutton1.Resizable = DataGridViewTriState.True;
+            skillbutton1.Text = " عملکرد1";
+            skillbutton1.UseColumnTextForButtonValue = true;
+            skillbutton1.Width = 125;
+            // 
+            // skillbutton2
+            // 
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(224, 224, 224);
+            skillbutton2.DefaultCellStyle = dataGridViewCellStyle3;
+            skillbutton2.HeaderText = "عملکرد 2";
+            skillbutton2.MinimumWidth = 6;
+            skillbutton2.Name = "skillbutton2";
+            skillbutton2.ReadOnly = true;
+            skillbutton2.Resizable = DataGridViewTriState.True;
+            skillbutton2.Text = "عملکرد2 ";
+            skillbutton2.UseColumnTextForButtonValue = true;
+            skillbutton2.Width = 125;
+            // 
+            // skillbutton3
+            // 
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(224, 224, 224);
+            skillbutton3.DefaultCellStyle = dataGridViewCellStyle4;
+            skillbutton3.HeaderText = "عملکرد 3";
+            skillbutton3.MinimumWidth = 6;
+            skillbutton3.Name = "skillbutton3";
+            skillbutton3.ReadOnly = true;
+            skillbutton3.Resizable = DataGridViewTriState.True;
+            skillbutton3.Text = "عملکرد3";
+            skillbutton3.UseColumnTextForButtonValue = true;
+            skillbutton3.Width = 125;
+            // 
             // delete
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle2.Font = new Font("Tahoma", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            delete.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle5.Font = new Font("Tahoma", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            delete.DefaultCellStyle = dataGridViewCellStyle5;
             delete.HeaderText = "حذف";
             delete.MinimumWidth = 6;
             delete.Name = "delete";
@@ -104,6 +156,9 @@
             // 
             // PDF
             // 
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(224, 224, 224);
+            PDF.DefaultCellStyle = dataGridViewCellStyle6;
             PDF.HeaderText = "بررسی فعالیت";
             PDF.MinimumWidth = 6;
             PDF.Name = "PDF";
@@ -155,7 +210,7 @@
             comboBox1.Items.AddRange(new object[] { "1400-1401", "1401-1402", "1402-1403", "1403-1404", "1404-1405", "1405-1406", "1406-1407", "1407-1408", "1408-1409", "1409-1410", "1410-1411" });
             comboBox1.Location = new Point(788, 151);
             comboBox1.Name = "comboBox1";
-            comboBox1.RightToLeft = RightToLeft.No;
+            comboBox1.RightToLeft = RightToLeft.Yes;
             comboBox1.Size = new Size(136, 30);
             comboBox1.TabIndex = 12;
             // 
@@ -197,7 +252,7 @@
             // 
             button2.Anchor = AnchorStyles.None;
             button2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(914, 218);
+            button2.Location = new Point(990, 216);
             button2.Name = "button2";
             button2.Size = new Size(223, 37);
             button2.TabIndex = 17;
@@ -213,7 +268,7 @@
             comboBox2.Items.AddRange(new object[] { "چهارم", "پنجم", "ششم", "هفتم", "هشتم", "نهم" });
             comboBox2.Location = new Point(592, 151);
             comboBox2.Name = "comboBox2";
-            comboBox2.RightToLeft = RightToLeft.No;
+            comboBox2.RightToLeft = RightToLeft.Yes;
             comboBox2.Size = new Size(144, 30);
             comboBox2.TabIndex = 18;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
@@ -245,6 +300,7 @@
             // 
             panel2.BackgroundImage = Properties.Resources.WhatsApp_Image_2025_04_28_at_02_09_09_2581277f;
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.Controls.Add(button7);
             panel2.Controls.Add(button6);
             panel2.Controls.Add(button5);
             panel2.Controls.Add(button4);
@@ -268,10 +324,23 @@
             panel2.Size = new Size(1633, 536);
             panel2.TabIndex = 21;
             // 
+            // button7
+            // 
+            button7.Anchor = AnchorStyles.None;
+            button7.Font = new Font("Tahoma", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button7.Location = new Point(184, 147);
+            button7.Name = "button7";
+            button7.Size = new Size(159, 39);
+            button7.TabIndex = 25;
+            button7.Text = "پاک سازی مقادیر";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // button6
             // 
+            button6.Anchor = AnchorStyles.None;
             button6.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button6.Location = new Point(467, 219);
+            button6.Location = new Point(580, 216);
             button6.Name = "button6";
             button6.Size = new Size(156, 37);
             button6.TabIndex = 24;
@@ -282,10 +351,10 @@
             // button5
             // 
             button5.Anchor = AnchorStyles.None;
-            button5.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button5.Location = new Point(266, 222);
+            button5.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button5.Location = new Point(298, 218);
             button5.Name = "button5";
-            button5.Size = new Size(94, 39);
+            button5.Size = new Size(171, 39);
             button5.TabIndex = 23;
             button5.Text = "خروج";
             button5.UseVisualStyleBackColor = true;
@@ -295,10 +364,10 @@
             // 
             button4.Anchor = AnchorStyles.None;
             button4.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.Location = new Point(686, 219);
+            button4.Location = new Point(788, 216);
             button4.Name = "button4";
             button4.RightToLeft = RightToLeft.No;
-            button4.Size = new Size(145, 34);
+            button4.Size = new Size(145, 37);
             button4.TabIndex = 22;
             button4.Text = "مدیریت ورود";
             button4.UseVisualStyleBackColor = true;
@@ -308,7 +377,7 @@
             // 
             button3.Anchor = AnchorStyles.None;
             button3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.Location = new Point(1176, 217);
+            button3.Location = new Point(1268, 218);
             button3.Name = "button3";
             button3.Size = new Size(221, 39);
             button3.TabIndex = 21;
@@ -364,11 +433,15 @@
         private BindingSource studentBindingSource;
         private Label label5;
         private Button button3;
-        private DataGridViewButtonColumn edit;
-        private DataGridViewButtonColumn delete;
-        private DataGridViewButtonColumn PDF;
         private Button button4;
         private Button button5;
         private Button button6;
+        private DataGridViewButtonColumn edit;
+        private DataGridViewButtonColumn skillbutton1;
+        private DataGridViewButtonColumn skillbutton2;
+        private DataGridViewButtonColumn skillbutton3;
+        private DataGridViewButtonColumn delete;
+        private DataGridViewButtonColumn PDF;
+        private Button button7;
     }
 }

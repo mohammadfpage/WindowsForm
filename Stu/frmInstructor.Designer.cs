@@ -29,8 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInstructor));
             panel1 = new Panel();
             panel2 = new Panel();
+            label8 = new Label();
+            label3 = new Label();
+            comboBox1 = new ComboBox();
             dataGridView1 = new DataGridView();
             button2 = new Button();
             label2 = new Label();
@@ -57,6 +61,11 @@
             // 
             // panel2
             // 
+            panel2.BackgroundImage = Properties.Resources.WhatsApp_Image_2025_04_28_at_02_09_09_2581277f;
+            panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.Controls.Add(label8);
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(comboBox1);
             panel2.Controls.Add(dataGridView1);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(label2);
@@ -69,27 +78,59 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1312, 444);
             panel2.TabIndex = 47;
-            panel2.Paint += panel2_Paint;
+            // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.None;
+            label8.AutoSize = true;
+            label8.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(411, 12);
+            label8.Name = "label8";
+            label8.Size = new Size(498, 28);
+            label8.TabIndex = 44;
+            label8.Text = "نرم افزار کلاس های مهارتی دبستان دخترانه هدایت";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(577, 88);
+            label3.Name = "label3";
+            label3.Size = new Size(118, 24);
+            label3.TabIndex = 8;
+            label3.Text = "کارگروه مربی";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(561, 127);
+            comboBox1.Name = "comboBox1";
+            comboBox1.RightToLeft = RightToLeft.Yes;
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 7;
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(374, 206);
+            dataGridView1.Location = new Point(549, 186);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RightToLeft = RightToLeft.Yes;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(466, 205);
+            dataGridView1.Size = new Size(351, 236);
             dataGridView1.TabIndex = 6;
             dataGridView1.Visible = false;
             // 
             // button2
             // 
             button2.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(131, 123);
+            button2.Location = new Point(146, 120);
             button2.Name = "button2";
-            button2.Size = new Size(240, 38);
+            button2.Size = new Size(187, 38);
             button2.TabIndex = 5;
-            button2.Text = "بازگشت به صفحه اصلی";
+            button2.Text = "خروج";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -97,7 +138,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(764, 88);
+            label2.Location = new Point(769, 88);
             label2.Name = "label2";
             label2.Size = new Size(168, 24);
             label2.TabIndex = 4;
@@ -107,7 +148,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(1072, 88);
+            label1.Location = new Point(1018, 88);
             label1.Name = "label1";
             label1.Size = new Size(84, 24);
             label1.TabIndex = 3;
@@ -116,7 +157,7 @@
             // textBox2
             // 
             textBox2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(764, 129);
+            textBox2.Location = new Point(767, 127);
             textBox2.Name = "textBox2";
             textBox2.RightToLeft = RightToLeft.Yes;
             textBox2.Size = new Size(170, 32);
@@ -125,7 +166,7 @@
             // textBox1
             // 
             textBox1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(1042, 129);
+            textBox1.Location = new Point(984, 127);
             textBox1.Name = "textBox1";
             textBox1.RightToLeft = RightToLeft.Yes;
             textBox1.Size = new Size(170, 32);
@@ -134,7 +175,7 @@
             // button1
             // 
             button1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(472, 123);
+            button1.Location = new Point(364, 117);
             button1.Name = "button1";
             button1.Size = new Size(163, 38);
             button1.TabIndex = 0;
@@ -153,6 +194,7 @@
             ClientSize = new Size(1312, 674);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmInstructor";
             RightToLeftLayout = true;
             Text = "صفحه ایجاد مربی";
@@ -175,5 +217,8 @@
         private TextBox textBox2;
         private DataGridView dataGridView1;
         private BindingSource instructorBindingSource;
+        private ComboBox comboBox1;
+        private Label label3;
+        private Label label8;
     }
 }

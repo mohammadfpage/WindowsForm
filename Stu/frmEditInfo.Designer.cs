@@ -91,7 +91,7 @@
             button3.Name = "button3";
             button3.Size = new Size(231, 45);
             button3.TabIndex = 66;
-            button3.Text = "بازگشت به صفحه اصلی";
+            button3.Text = "خروج";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -193,7 +193,7 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(156, 32);
             textBox4.TabIndex = 3;
-            textBox4.TextChanged += textBox4_TextChanged_1;
+            textBox4.TextAlign = HorizontalAlignment.Right;
             // 
             // textBox3
             // 
@@ -203,7 +203,7 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(156, 32);
             textBox3.TabIndex = 2;
-            textBox3.TextChanged += textBox3_TextChanged;
+            textBox3.TextAlign = HorizontalAlignment.Right;
             // 
             // textBox2
             // 
@@ -213,7 +213,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(170, 32);
             textBox2.TabIndex = 1;
-            textBox2.TextChanged += textBox2_TextChanged;
+            textBox2.TextAlign = HorizontalAlignment.Right;
             // 
             // textBox1
             // 
@@ -223,7 +223,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(170, 32);
             textBox1.TabIndex = 0;
-            textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.TextAlign = HorizontalAlignment.Right;
             // 
             // frmEditInfo
             // 
