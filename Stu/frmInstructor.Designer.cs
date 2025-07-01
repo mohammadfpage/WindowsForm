@@ -78,6 +78,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1312, 444);
             panel2.TabIndex = 47;
+            panel2.Paint += panel2_Paint_1;
             // 
             // label8
             // 
@@ -92,6 +93,7 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(577, 88);
@@ -102,6 +104,7 @@
             // 
             // comboBox1
             // 
+            comboBox1.Anchor = AnchorStyles.None;
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(561, 127);
             comboBox1.Name = "comboBox1";
@@ -113,6 +116,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(549, 186);
             dataGridView1.Name = "dataGridView1";
@@ -125,6 +129,7 @@
             // 
             // button2
             // 
+            button2.Anchor = AnchorStyles.None;
             button2.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.Location = new Point(146, 120);
             button2.Name = "button2";
@@ -136,6 +141,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(769, 88);
@@ -146,6 +152,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(1018, 88);
@@ -156,6 +163,7 @@
             // 
             // textBox2
             // 
+            textBox2.Anchor = AnchorStyles.None;
             textBox2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox2.Location = new Point(767, 127);
             textBox2.Name = "textBox2";
@@ -165,6 +173,7 @@
             // 
             // textBox1
             // 
+            textBox1.Anchor = AnchorStyles.None;
             textBox1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(984, 127);
             textBox1.Name = "textBox1";
@@ -174,6 +183,7 @@
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.None;
             button1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.Location = new Point(364, 117);
             button1.Name = "button1";

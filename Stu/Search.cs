@@ -1,14 +1,14 @@
-﻿using System;
-using System.Data;
-using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using QuestPDF.Fluent;
-using QuestPDF.Infrastructure;
-using System.IO;
 using QuestPDF.Helpers;
-using System.Linq;
-using System.Collections.Generic;
+using QuestPDF.Infrastructure;
 using Stu.Model;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Stu
 {
@@ -20,6 +20,7 @@ namespace Stu
             ConfigureDataGridView();
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
         }
+
         private void ConfigureDataGridView()
         {
             dataGridView1.RightToLeft = RightToLeft.Yes;
@@ -27,7 +28,6 @@ namespace Stu
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // اضافه کردن ستون PDF به‌صورت دینامیک
             if (!dataGridView1.Columns.Contains("PDF"))
             {
                 DataGridViewButtonColumn pdfColumn = new DataGridViewButtonColumn
@@ -40,6 +40,7 @@ namespace Stu
                 dataGridView1.Columns.Add(pdfColumn);
             }
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
@@ -53,7 +54,7 @@ namespace Stu
             if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName) &&
                 string.IsNullOrEmpty(entranceYearText) && string.IsNullOrEmpty(levelStudent))
             {
-                MessageBox.Show(".لطفاً حداقل یکی از فیلدها را وارد یا انتخاب کنید", "خطا",
+                MessageBox.Show("لطفاً حداقل یکی از فیلدها را وارد یا انتخاب کنید.", "خطا",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -69,16 +70,17 @@ namespace Stu
                 else
                 {
                     dataGridView1.Visible = false;
-                    MessageBox.Show(".دانش‌آموزی با مشخصات وارد شده یافت نشد", "نتیجه جستجو",
+                    MessageBox.Show("دانش‌آموزی با مشخصات وارد شده یافت نشد.", "نتیجه جستجو",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"خطا در جستجو: {ex.Message}\n{ex.StackTrace}", "خطا",
-                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private DataTable SearchStudents(string firstName, string lastName, string entranceYear, string levelStudent)
         {
             DataTable dataTable = new DataTable();
@@ -86,63 +88,60 @@ namespace Stu
             {
                 connection.Open();
                 string query = @"
-                SELECT 
-                    s.StudentId, 
-                    s.FirstName, 
-                    s.LastName, 
-                    s.SchoolYear,
-                    s.LevelStudent,
-                    s.Skill1,
-                    s.Skill2,
-                    s.Skill3,
-                    sg1.Name AS Skill1Name, 
-                    sg2.Name AS Skill2Name, 
-                    sg3.Name AS Skill3Name,
-                    CONCAT(i1.Name, ' ', i1.Family) AS Skill1Instructor,
-                    CONCAT(i2.Name, ' ', i2.Family) AS Skill2Instructor,
-                    CONCAT(i3.Name, ' ', i3.Family) AS Skill3Instructor,
-                    eval1.Description AS Skill1Description,
-                    eval2.Description AS Skill2Description,
-                    eval3.Description AS Skill3Description
-                FROM Student s
-                LEFT JOIN SkillGroups sg1 ON s.Skill1 = sg1.SkillGroupId
-                LEFT JOIN SkillGroups sg2 ON s.Skill2 = sg2.SkillGroupId
-                LEFT JOIN SkillGroups sg3 ON s.Skill3 = sg3.SkillGroupId
-                LEFT JOIN Instructor i1 ON sg1.InstructorId = i1.Id
-                LEFT JOIN Instructor i2 ON sg2.InstructorId = i2.Id
-                LEFT JOIN Instructor i3 ON sg3.InstructorId = i3.Id
-                LEFT JOIN (
-                    SELECT StudentId, SkillGroupId, Description
-                    FROM StudentSkillEvaluation e
-                    WHERE EvaluationDate = (
-                        SELECT MAX(EvaluationDate)
-                        FROM StudentSkillEvaluation
-                        WHERE StudentId = e.StudentId AND SkillGroupId = e.SkillGroupId AND SkillNumber = 1
-                    ) AND SkillNumber = 1
-                ) eval1 ON s.StudentId = eval1.StudentId AND s.Skill1 = eval1.SkillGroupId
-                LEFT JOIN (
-                    SELECT StudentId, SkillGroupId, Description
-                    FROM StudentSkillEvaluation e
-                    WHERE EvaluationDate = (
-                        SELECT MAX(EvaluationDate)
-                        FROM StudentSkillEvaluation
-                        WHERE StudentId = e.StudentId AND SkillGroupId = e.SkillGroupId AND SkillNumber = 2
-                    ) AND SkillNumber = 2
-                ) eval2 ON s.StudentId = eval2.StudentId AND s.Skill2 = eval2.SkillGroupId
-                LEFT JOIN (
-                    SELECT StudentId, SkillGroupId, Description
-                    FROM StudentSkillEvaluation e
-                    WHERE EvaluationDate = (
-                        SELECT MAX(EvaluationDate)
-                        FROM StudentSkillEvaluation
-                        WHERE StudentId = e.StudentId AND SkillGroupId = e.SkillGroupId AND SkillNumber = 3
-                    ) AND SkillNumber = 3
-                ) eval3 ON s.StudentId = eval3.StudentId AND s.Skill3 = eval3.SkillGroupId
-                WHERE 
-                    (ISNULL(@FirstName, '') = '' OR s.FirstName LIKE '%' + @FirstName + '%')
-                    AND (ISNULL(@LastName, '') = '' OR s.LastName LIKE '%' + @LastName + '%')
-                    AND (ISNULL(@EntranceYear, '') = '' OR s.SchoolYear = @EntranceYear)
-                    AND (ISNULL(@LevelStudent, '') = '' OR s.LevelStudent = @LevelStudent)";
+SELECT 
+    s.StudentId, 
+    s.FirstName, 
+    s.LastName, 
+    s.SchoolYear,
+    s.LevelStudent,
+    s.Skill1,
+    s.Skill2,
+    s.Skill3,
+    sg1.Name AS Skill1Name, 
+    sg2.Name AS Skill2Name, 
+    sg3.Name AS Skill3Name,
+    eval1.InstructorName AS Skill1Instructor,
+    eval2.InstructorName AS Skill2Instructor,
+    eval3.InstructorName AS Skill3Instructor,
+    eval1.Description AS Skill1Description,
+    eval2.Description AS Skill2Description,
+    eval3.Description AS Skill3Description
+FROM Student s
+LEFT JOIN SkillGroups sg1 ON s.Skill1 = sg1.SkillGroupId
+LEFT JOIN SkillGroups sg2 ON s.Skill2 = sg2.SkillGroupId
+LEFT JOIN SkillGroups sg3 ON s.Skill3 = sg3.SkillGroupId
+LEFT JOIN (
+    SELECT StudentId, SkillGroupId, InstructorName, Description
+    FROM StudentSkillEvaluation e
+    WHERE EvaluationDate = (
+        SELECT MAX(EvaluationDate)
+        FROM StudentSkillEvaluation
+        WHERE StudentId = e.StudentId AND SkillGroupId = e.SkillGroupId AND SkillNumber = 1
+    ) AND SkillNumber = 1
+) eval1 ON s.StudentId = eval1.StudentId AND s.Skill1 = eval1.SkillGroupId
+LEFT JOIN (
+    SELECT StudentId, SkillGroupId, InstructorName, Description
+    FROM StudentSkillEvaluation e
+    WHERE EvaluationDate = (
+        SELECT MAX(EvaluationDate)
+        FROM StudentSkillEvaluation
+        WHERE StudentId = e.StudentId AND SkillGroupId = e.SkillGroupId AND SkillNumber = 2
+    ) AND SkillNumber = 2
+) eval2 ON s.StudentId = eval2.StudentId AND s.Skill2 = eval2.SkillGroupId
+LEFT JOIN (
+    SELECT StudentId, SkillGroupId, InstructorName, Description
+    FROM StudentSkillEvaluation e
+    WHERE EvaluationDate = (
+        SELECT MAX(EvaluationDate)
+        FROM StudentSkillEvaluation
+        WHERE StudentId = e.StudentId AND SkillGroupId = e.SkillGroupId AND SkillNumber = 3
+    ) AND SkillNumber = 3
+) eval3 ON s.StudentId = eval3.StudentId AND s.Skill3 = eval3.SkillGroupId
+WHERE 
+    (ISNULL(@FirstName, '') = '' OR s.FirstName LIKE '%' + @FirstName + '%')
+    AND (ISNULL(@LastName, '') = '' OR s.LastName LIKE '%' + @LastName + '%')
+    AND (ISNULL(@EntranceYear, '') = '' OR s.SchoolYear = @EntranceYear)
+    AND (ISNULL(@LevelStudent, '') = '' OR s.LevelStudent = @LevelStudent)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -159,6 +158,7 @@ namespace Stu
             }
             return dataTable;
         }
+
         private void SetGridHeaders()
         {
             if (dataGridView1.Columns.Contains("StudentId")) dataGridView1.Columns["StudentId"].HeaderText = "کد دانش‌آموز";
@@ -227,11 +227,7 @@ namespace Stu
                 skillDescriptions[2] = row.Cells["Skill3Description"].Value?.ToString() ?? "بدون توضیحات";
 
                 var skillEvaluations = GetStudentSkillEvaluations(studentId);
-                if (!skillEvaluations.Any())
-                {
-                    MessageBox.Show($"هیچ ارزیابی برای دانش‌آموز {firstName} {lastName} یافت نشد.", "هشدار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 string folderPath = Path.Combine(desktopPath, "گزارش تکی");
                 Directory.CreateDirectory(folderPath);
@@ -245,20 +241,24 @@ namespace Stu
                         if (!skillIds[i].HasValue) continue;
                         int skillNumber = i + 1;
                         var evaluations = skillEvaluations.FirstOrDefault(e => e.SkillNumber == skillNumber);
-                        if (evaluations == null) continue;
-
-                        string[] evaluationValues = new[]
-                        {
-                            evaluations.Aestimatio_peritiae1,
-                            evaluations.Aestimatio_peritiae2,
-                            evaluations.Aestimatio_peritiae3,
-                            evaluations.Aestimatio_peritiae4,
-                            evaluations.Aestimatio_peritiae5,
-                            evaluations.Aestimatio_peritiae6,
-                            evaluations.Aestimatio_peritiae7
-                        };
+                        string[] evaluationValues = evaluations != null
+                            ? new[]
+                            {
+                                evaluations.Aestimatio_peritiae1,
+                                evaluations.Aestimatio_peritiae2,
+                                evaluations.Aestimatio_peritiae3,
+                                evaluations.Aestimatio_peritiae4,
+                                evaluations.Aestimatio_peritiae5,
+                                evaluations.Aestimatio_peritiae6,
+                                evaluations.Aestimatio_peritiae7
+                            }
+                            : new string[7];
                         string instructorName = skillInstructors[i];
                         string description = skillDescriptions[i];
+                        string evaluationDate = evaluations != null
+                            ? evaluations.EvaluationDate.ToString("yyyy/MM/dd")
+                            : "نامشخص";
+
                         container.Page(page =>
                         {
                             page.Size(PageSizes.A4);
@@ -276,26 +276,25 @@ namespace Stu
                                 .BorderBottom(1, Unit.Millimetre)
                                 .BorderColor(Colors.Grey.Darken1)
                                 .Background(Colors.Grey.Lighten4)
-                                .Padding(10)
+                                .Padding(15)
                                 .Column(col =>
                                 {
-                                    col.Item().Text("گزارش عملکرد دانش‌آموز")
-                                        .FontSize(18).ExtraBold().FontColor(Colors.Blue.Darken2).AlignCenter();
-                                    col.Item().PaddingTop(5).Text($"نام دانش‌آموز: {firstName} {lastName}")
+                                    col.Item().AlignCenter().Text($"{skillNames[i]}")
+                                        .FontSize(18).ExtraBold().FontColor(Colors.Blue.Darken2);
+                                    col.Item().PaddingTop(1).AlignRight().Text($"نام دانش‌آموز: {firstName} {lastName}")
                                         .FontSize(16).ExtraBold();
-                                    col.Item().Text($"پایه تحصیلی: {levelStudent}")
+                                    col.Item().AlignRight().Text($"پایه تحصیلی: {levelStudent}")
                                         .FontSize(15).ExtraBold();
-                                    col.Item().Text($"سال ورود: {schoolYear}")
+                                    col.Item().AlignRight().Text($"سال ورود: {schoolYear}")
                                         .FontSize(15).ExtraBold();
-                                    col.Item().Text($"کارگروه: {skillNames[i]}")
+                                    col.Item().AlignRight().Text($"کارگروه: {skillNames[i]}")
                                         .FontSize(15).ExtraBold();
-                                    col.Item().Text($"مربی: {instructorName}")
+                                    col.Item().AlignRight().Text($"مربی: {instructorName}")
                                         .FontSize(15).ExtraBold();
-                                    col.Item().PaddingTop(5).Text($"تاریخ گزارش: {DateTime.Now:yyyy/MM/dd}")
-                                        .FontSize(14).Bold().FontColor(Colors.Grey.Darken2);
                                 });
+
                             page.Content()
-                                .PaddingVertical(1.5f, Unit.Centimetre)
+                                .PaddingVertical(2, Unit.Centimetre)
                                 .Border(0.5f, Unit.Millimetre)
                                 .BorderColor(Colors.Grey.Darken2)
                                 .Padding(10)
@@ -306,18 +305,20 @@ namespace Stu
                                     {
                                         table.ColumnsDefinition(cols =>
                                         {
-                                            cols.RelativeColumn(2.5f);
+                                            cols.RelativeColumn(3f);
+                                            cols.ConstantColumn(80);
                                             cols.ConstantColumn(70);
-                                            cols.ConstantColumn(60);
-                                            cols.ConstantColumn(70);
+                                            cols.ConstantColumn(80);
                                         });
+
                                         table.Header(header =>
                                         {
-                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("معیار").FontSize(14).Bold();
-                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("نیاز به رشد").FontSize(14).Bold();
-                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("مطلوب").FontSize(14).Bold();
-                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("رو به رشد").FontSize(14).Bold();
+                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(10).AlignCenter().Text("معیار").FontSize(14).Bold();
+                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(10).AlignCenter().Text("نیاز به رشد").FontSize(14).Bold();
+                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(10).AlignCenter().Text("مطلوب").FontSize(14).Bold();
+                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(10).AlignCenter().Text("رو به رشد").FontSize(14).Bold();
                                         });
+
                                         string[] criteria = new[]
                                         {
                                             "مسئولیت‌پذیری",
@@ -331,20 +332,20 @@ namespace Stu
 
                                         for (int j = 0; j < criteria.Length; j++)
                                         {
-                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(criteria[j]).FontSize(13);
-                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).AlignCenter()
+                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(10).AlignRight().Text(criteria[j]).FontSize(13);
+                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(10).AlignCenter()
                                                 .Text(evaluationValues[j] == "نیاز به رشد" ? "✓" : "").FontSize(13);
-                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).AlignCenter()
+                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(10).AlignCenter()
                                                 .Text(evaluationValues[j] == "مطلوب" ? "✓" : "").FontSize(13);
-                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).AlignCenter()
+                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(10).AlignCenter()
                                                 .Text(evaluationValues[j] == "رو به رشد" ? "✓" : "").FontSize(13);
                                         }
                                     });
 
-                                    col.Item().PaddingTop(15).Text("توضیحات مربی:")
+                                    col.Item().PaddingTop(8).AlignRight().Text("توضیحات مربی:")
                                         .FontSize(15).Bold().FontColor(Colors.Black);
-                                    col.Item().PaddingTop(8).Text(description)
-                                        .FontSize(13).LineHeight(1.2f);
+                                    col.Item().PaddingTop(4).AlignRight().Text(description)
+                                        .FontSize(13).LineHeight(1.3f);
                                 });
 
                             page.Footer()
@@ -361,7 +362,7 @@ namespace Stu
                 }).GeneratePdf(filePath);
 
                 MessageBox.Show($"گزارش با موفقیت در مسیر زیر ذخیره شد:\n{filePath}",
-                              "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -374,7 +375,7 @@ namespace Stu
             if (dataGridView1.Rows.Count == 0)
             {
                 MessageBox.Show("دانش‌آموزی برای گزارش‌گیری یافت نشد.", "هشدار",
-                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             try
@@ -412,35 +413,39 @@ namespace Stu
                         skillDescriptions[0] = row.Cells["Skill1Description"].Value?.ToString() ?? "بدون توضیحات";
                         skillDescriptions[1] = row.Cells["Skill2Description"].Value?.ToString() ?? "بدون توضیحات";
                         skillDescriptions[2] = row.Cells["Skill3Description"].Value?.ToString() ?? "بدون توضیحات";
+
                         var skillEvaluations = GetStudentSkillEvaluations(studentId);
-                        if (!skillEvaluations.Any()) continue;
 
                         for (int i = 0; i < 3; i++)
                         {
                             if (!skillIds[i].HasValue) continue;
                             int skillNumber = i + 1;
                             var evaluations = skillEvaluations.FirstOrDefault(e => e.SkillNumber == skillNumber);
-                            if (evaluations == null) continue;
-
-                            string[] evaluationValues = new[]
-                            {
-                                evaluations.Aestimatio_peritiae1,
-                                evaluations.Aestimatio_peritiae2,
-                                evaluations.Aestimatio_peritiae3,
-                                evaluations.Aestimatio_peritiae4,
-                                evaluations.Aestimatio_peritiae5,
-                                evaluations.Aestimatio_peritiae6,
-                                evaluations.Aestimatio_peritiae7
-                            };
+                            string[] evaluationValues = evaluations != null
+                                ? new[]
+                                {
+                                    evaluations.Aestimatio_peritiae1,
+                                    evaluations.Aestimatio_peritiae2,
+                                    evaluations.Aestimatio_peritiae3,
+                                    evaluations.Aestimatio_peritiae4,
+                                    evaluations.Aestimatio_peritiae5,
+                                    evaluations.Aestimatio_peritiae6,
+                                    evaluations.Aestimatio_peritiae7
+                                }
+                                : new string[7];
                             string instructorName = skillInstructors[i];
                             string description = skillDescriptions[i];
+                            string evaluationDate = evaluations != null
+                                ? evaluations.EvaluationDate.ToString("yyyy/MM/dd")
+                                : "نامشخص";
+
                             container.Page(page =>
                             {
                                 page.Size(PageSizes.A4);
                                 page.Margin(2, Unit.Centimetre);
                                 page.PageColor(Colors.White);
                                 page.ContentFromRightToLeft();
-                                page.DefaultTextStyle(x => x.FontSize(14).FontFamily("B Nazanin").Bold().Fallback(x => x.FontFamily("Arial")));
+                                page.DefaultTextStyle(x => x.FontSize(14).FontFamily("B Nazanin").Bold().Fallback(x => x.FontFamily("B Nazanin")));
 
                                 page.Background()
                                     .Border(1, Unit.Millimetre)
@@ -451,29 +456,30 @@ namespace Stu
                                     .BorderBottom(1, Unit.Millimetre)
                                     .BorderColor(Colors.Grey.Darken1)
                                     .Background(Colors.Grey.Lighten4)
-                                    .Padding(10)
+                                    .Padding(15)
                                     .Column(col =>
                                     {
-                                        col.Item().Text("گزارش گروهی دانش‌آموزان")
-                                            .FontSize(18).ExtraBold().FontColor(Colors.Blue.Darken2).AlignCenter();
-                                        col.Item().PaddingTop(5).Text($"نام دانش‌آموز: {firstName} {lastName}")
+                                        col.Item().AlignCenter().Text($"گزارش گروهی دانش‌آموزان - {skillNames[i]}")
+                                            .FontSize(18).ExtraBold().FontColor(Colors.Blue.Darken2);
+                                        col.Item().PaddingTop(1).AlignRight().Text($"نام دانش‌آموز: {firstName} {lastName}")
                                             .FontSize(16).ExtraBold();
-                                        col.Item().Text($"پایه تحصیلی: {levelStudent}")
+                                        col.Item().AlignRight().Text($"پایه تحصیلی: {levelStudent}")
                                             .FontSize(15).ExtraBold();
-                                        col.Item().Text($"سال ورود: {schoolYear}")
+                                        col.Item().AlignRight().Text($"سال ورود: {schoolYear}")
                                             .FontSize(15).ExtraBold();
-                                        col.Item().Text($"کارگروه: {skillNames[i]}")
+                                        col.Item().AlignRight().Text($"کارگروه: {skillNames[i]}")
                                             .FontSize(15).ExtraBold();
-                                        col.Item().Text($"مربی: {instructorName}")
+                                        col.Item().AlignRight().Text($"مربی: {instructorName}")
                                             .FontSize(15).ExtraBold();
-                                        col.Item().PaddingTop(5).Text($"تاریخ گزارش: {DateTime.Now:yyyy/MM/dd}")
-                                            .FontSize(14).Bold().FontColor(Colors.Grey.Darken2);
+                                        col.Item().AlignRight().Text($"تاریخ گزارش: {evaluationDate}")
+                                            .FontSize(15).Bold().FontColor(Colors.Grey.Darken2);
                                     });
+
                                 page.Content()
-                                    .PaddingVertical(1.5f, Unit.Centimetre)
+                                    .PaddingVertical(2, Unit.Centimetre)
                                     .Border(0.5f, Unit.Millimetre)
                                     .BorderColor(Colors.Grey.Darken2)
-                                    .Padding(10)
+                                    .Padding(15)
                                     .Background(Colors.White)
                                     .Column(col =>
                                     {
@@ -481,18 +487,20 @@ namespace Stu
                                         {
                                             table.ColumnsDefinition(cols =>
                                             {
-                                                cols.RelativeColumn(2.5f);
+                                                cols.RelativeColumn(3f);
+                                                cols.ConstantColumn(80);
                                                 cols.ConstantColumn(70);
-                                                cols.ConstantColumn(60);
-                                                cols.ConstantColumn(70);
+                                                cols.ConstantColumn(80);
                                             });
+
                                             table.Header(header =>
                                             {
-                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("معیار").FontSize(14).Bold();
-                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("نیاز به رشد").FontSize(14).Bold();
-                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("مطلوب").FontSize(14).Bold();
-                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("رو به رشد").FontSize(14).Bold();
+                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).AlignCenter().Text("معیار").FontSize(14).Bold();
+                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).AlignCenter().Text("نیاز به رشد").FontSize(14).Bold();
+                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).AlignCenter().Text("مطلوب").FontSize(14).Bold();
+                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).AlignCenter().Text("رو به رشد").FontSize(14).Bold();
                                             });
+
                                             string[] criteria = new[]
                                             {
                                                 "مسئولیت‌پذیری",
@@ -503,9 +511,10 @@ namespace Stu
                                                 "پویایی و نشاط در انجام فعالیت",
                                                 "میزان شرکت در کارگروه"
                                             };
+
                                             for (int j = 0; j < criteria.Length; j++)
                                             {
-                                                table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(criteria[j]).FontSize(13);
+                                                table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).AlignRight().Text(criteria[j]).FontSize(13);
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).AlignCenter()
                                                     .Text(evaluationValues[j] == "نیاز به رشد" ? "✓" : "").FontSize(13);
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).AlignCenter()
@@ -514,11 +523,13 @@ namespace Stu
                                                     .Text(evaluationValues[j] == "رو به رشد" ? "✓" : "").FontSize(13);
                                             }
                                         });
-                                        col.Item().PaddingTop(15).Text("توضیحات مربی:")
+
+                                        col.Item().PaddingTop(8).AlignRight().Text("توضیحات مربی:")
                                             .FontSize(15).Bold().FontColor(Colors.Black);
-                                        col.Item().PaddingTop(8).Text(description)
-                                            .FontSize(13).LineHeight(1.2f);
+                                        col.Item().PaddingTop(4).AlignRight().Text(description)
+                                            .FontSize(13).LineHeight(1.3f);
                                     });
+
                                 page.Footer()
                                     .AlignCenter()
                                     .Text(x =>
@@ -534,7 +545,7 @@ namespace Stu
                 }).GeneratePdf(filePath);
 
                 MessageBox.Show($"گزارش گروهی با موفقیت در مسیر زیر ذخیره شد:\n{filePath}",
-                              "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -549,19 +560,19 @@ namespace Stu
             {
                 connection.Open();
                 string query = @"
-                SELECT 
-                    EvaluationDate, 
-                    Aestimatio_peritiae1, 
-                    Aestimatio_peritiae2, 
-                    Aestimatio_peritiae3,
-                    Aestimatio_peritiae4, 
-                    Aestimatio_peritiae5, 
-                    Aestimatio_peritiae6, 
-                    Aestimatio_peritiae7,
-                    InstructorName, 
-                    SkillNumber
-                FROM StudentSkillEvaluation
-                WHERE StudentId = @StudentId";
+SELECT 
+    EvaluationDate, 
+    Aestimatio_peritiae1, 
+    Aestimatio_peritiae2, 
+    Aestimatio_peritiae3,
+    Aestimatio_peritiae4, 
+    Aestimatio_peritiae5, 
+    Aestimatio_peritiae6, 
+    Aestimatio_peritiae7,
+    InstructorName, 
+    SkillNumber
+FROM StudentSkillEvaluation
+WHERE StudentId = @StudentId";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@StudentId", studentId);
@@ -588,6 +599,7 @@ namespace Stu
             }
             return evaluations;
         }
+
         private void button7_Click(object sender, EventArgs e)
         {
             textBox1.Clear();
@@ -603,17 +615,5 @@ namespace Stu
         }
     }
 
-    public class SkillEvaluation
-    {
-        public DateTime EvaluationDate { get; set; }
-        public string Aestimatio_peritiae1 { get; set; }
-        public string Aestimatio_peritiae2 { get; set; }
-        public string Aestimatio_peritiae3 { get; set; }
-        public string Aestimatio_peritiae4 { get; set; }
-        public string Aestimatio_peritiae5 { get; set; }
-        public string Aestimatio_peritiae6 { get; set; }
-        public string Aestimatio_peritiae7 { get; set; }
-        public string InstructorName { get; set; }
-        public int SkillNumber { get; set; }
-    }
+   
 }

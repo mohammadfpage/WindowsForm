@@ -17,6 +17,8 @@ namespace Stu.Model
         public string Aestimatio_peritiae6 { get; set; }
         public string Aestimatio_peritiae7 { get; set; }
         public string InstructorName { get; set; }
+        public int SkillNumber { get; set; }
+
 
     }
 }
