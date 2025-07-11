@@ -96,6 +96,7 @@
             // 
             // label9
             // 
+            label9.Anchor = AnchorStyles.None;
             label9.AutoSize = true;
             label9.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.Location = new Point(575, 168);
@@ -105,6 +106,7 @@
             // 
             // comboBox7
             // 
+            comboBox7.Anchor = AnchorStyles.None;
             comboBox7.DropDownHeight = 151;
             comboBox7.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox7.FormattingEnabled = true;

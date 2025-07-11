@@ -281,7 +281,7 @@ WHERE
                                 {
                                     col.Item().AlignCenter().Text($"{skillNames[i]}")
                                         .FontSize(18).ExtraBold().FontColor(Colors.Blue.Darken2);
-                                    col.Item().PaddingTop(1).AlignRight().Text($"نام دانش‌آموز: {firstName} {lastName}")
+                                    col.Item().AlignRight().Text($"نام دانش‌آموز: {firstName} {lastName}")
                                         .FontSize(16).ExtraBold();
                                     col.Item().AlignRight().Text($"پایه تحصیلی: {levelStudent}")
                                         .FontSize(15).ExtraBold();
@@ -294,7 +294,7 @@ WHERE
                                 });
 
                             page.Content()
-                                .PaddingVertical(2, Unit.Centimetre)
+                                //.PaddingVertical(2, Unit.Centimetre)
                                 .Border(0.5f, Unit.Millimetre)
                                 .BorderColor(Colors.Grey.Darken2)
                                 .Padding(10)
@@ -342,9 +342,9 @@ WHERE
                                         }
                                     });
 
-                                    col.Item().PaddingTop(8).AlignRight().Text("توضیحات مربی:")
+                                    col.Item().AlignRight().Text("توضیحات مربی:")
                                         .FontSize(15).Bold().FontColor(Colors.Black);
-                                    col.Item().PaddingTop(4).AlignRight().Text(description)
+                                    col.Item().PaddingTop(2).AlignRight().Text(description)
                                         .FontSize(13).LineHeight(1.3f);
                                 });
 
@@ -459,9 +459,9 @@ WHERE
                                     .Padding(15)
                                     .Column(col =>
                                     {
-                                        col.Item().AlignCenter().Text($"گزارش گروهی دانش‌آموزان - {skillNames[i]}")
+                                        col.Item().AlignCenter().Text($"{skillNames[i]}")
                                             .FontSize(18).ExtraBold().FontColor(Colors.Blue.Darken2);
-                                        col.Item().PaddingTop(1).AlignRight().Text($"نام دانش‌آموز: {firstName} {lastName}")
+                                        col.Item().AlignRight().Text($"نام دانش‌آموز: {firstName} {lastName}")
                                             .FontSize(16).ExtraBold();
                                         col.Item().AlignRight().Text($"پایه تحصیلی: {levelStudent}")
                                             .FontSize(15).ExtraBold();
@@ -471,12 +471,10 @@ WHERE
                                             .FontSize(15).ExtraBold();
                                         col.Item().AlignRight().Text($"مربی: {instructorName}")
                                             .FontSize(15).ExtraBold();
-                                        col.Item().AlignRight().Text($"تاریخ گزارش: {evaluationDate}")
-                                            .FontSize(15).Bold().FontColor(Colors.Grey.Darken2);
                                     });
 
                                 page.Content()
-                                    .PaddingVertical(2, Unit.Centimetre)
+                                    //.PaddingVertical(2, Unit.Centimetre)
                                     .Border(0.5f, Unit.Millimetre)
                                     .BorderColor(Colors.Grey.Darken2)
                                     .Padding(15)
@@ -524,9 +522,9 @@ WHERE
                                             }
                                         });
 
-                                        col.Item().PaddingTop(8).AlignRight().Text("توضیحات مربی:")
+                                        col.Item().AlignRight().Text("توضیحات مربی:")
                                             .FontSize(15).Bold().FontColor(Colors.Black);
-                                        col.Item().PaddingTop(4).AlignRight().Text(description)
+                                        col.Item().PaddingTop(2).AlignRight().Text(description)
                                             .FontSize(13).LineHeight(1.3f);
                                     });
 
@@ -613,7 +611,12 @@ WHERE StudentId = @StudentId";
         {
             GenerateAllStudentsReport();
         }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
-   
+
 }

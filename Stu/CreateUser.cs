@@ -25,7 +25,6 @@ namespace Stu
         private void InitializeDataGridView()
         {
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             string firstName = textBox1.Text.Trim();
@@ -333,7 +332,7 @@ WHERE StudentId = @StudentId AND SkillGroupId = @SkillGroupId AND SkillNumber = 
                                 {
                                     column.Item().Text($"{skillNames[i]}")
                                         .FontSize(18).Bold().FontColor(Colors.Blue.Darken2).AlignCenter();
-                                    column.Item().PaddingTop(1).Text($"نام دانش‌آموز: {firstName} {lastName}")
+                                    column.Item().Text($"نام دانش‌آموز: {firstName} {lastName}")
                                         .FontSize(16).ExtraBold();
                                     column.Item().Text($"پایه تحصیلی: {levelStudent}")
                                         .FontSize(15).ExtraBold();
@@ -345,7 +344,7 @@ WHERE StudentId = @StudentId AND SkillGroupId = @SkillGroupId AND SkillNumber = 
                                         .FontSize(15).ExtraBold();
                                 });
                             page.Content()
-                                .PaddingVertical(2, Unit.Centimetre)
+                                //.PaddingVertical(2, Unit.Centimetre)
                                 .Border(0.5f, Unit.Millimetre)
                                 .BorderColor(Colors.Grey.Darken2)
                                 .Padding(15)
@@ -629,7 +628,7 @@ WHERE s.StudentId = @StudentId";
                                     {
                                         column.Item().Text($"{skillNames[i]}")
                                             .FontSize(18).Bold().FontColor(Colors.Blue.Darken2).AlignCenter();
-                                        column.Item().PaddingTop(1).Text($"نام دانش‌آموز: {firstName} {lastName}")
+                                        column.Item().Text($"نام دانش‌آموز: {firstName} {lastName}")
                                             .FontSize(16).ExtraBold();
                                         column.Item().Text($"پایه تحصیلی: {levelStudent}")
                                             .FontSize(15).ExtraBold();
@@ -641,7 +640,7 @@ WHERE s.StudentId = @StudentId";
                                             .FontSize(15).ExtraBold();
                                     });
                                 page.Content()
-                                    .PaddingVertical(1.5f, Unit.Centimetre)
+                                    //.PaddingVertical(1.5f, Unit.Centimetre)
                                     .Border(0.5f, Unit.Millimetre)
                                     .BorderColor(Colors.Grey.Darken2)
                                     .Padding(10)
