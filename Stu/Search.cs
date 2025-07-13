@@ -185,6 +185,27 @@ WHERE
                 }
             }
         }
+        string FixYearOrder(string input)
+        {
+            var parts = input.Split('-');
+
+            if (parts.Length == 2)
+            {
+                var from = parts[0].Trim();
+                var to = parts[1].Trim();
+
+                if (int.TryParse(from, out int fromYear) && int.TryParse(to, out int toYear))
+                {
+                    if (fromYear > toYear)
+                        return $"{from} - {to}"; 
+                }
+
+                return $"{to} - {from}";
+            }
+
+            return input;
+        }
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -285,8 +306,11 @@ WHERE
                                         .FontSize(16).ExtraBold();
                                     col.Item().AlignRight().Text($"پایه تحصیلی: {levelStudent}")
                                         .FontSize(15).ExtraBold();
-                                    col.Item().AlignRight().Text($"سال ورود: {schoolYear}")
+
+                                    col.Item().AlignRight().Text($"سال ورود: {FixYearOrder(schoolYear)}")
                                         .FontSize(15).ExtraBold();
+
+
                                     col.Item().AlignRight().Text($"کارگروه: {skillNames[i]}")
                                         .FontSize(15).ExtraBold();
                                     col.Item().AlignRight().Text($"مربی: {instructorName}")
@@ -314,9 +338,9 @@ WHERE
                                         table.Header(header =>
                                         {
                                             header.Cell().Background(Colors.Blue.Lighten4).Padding(10).AlignCenter().Text("معیار").FontSize(14).Bold();
-                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(10).AlignCenter().Text("نیاز به رشد").FontSize(14).Bold();
-                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(10).AlignCenter().Text("مطلوب").FontSize(14).Bold();
                                             header.Cell().Background(Colors.Blue.Lighten4).Padding(10).AlignCenter().Text("رو به رشد").FontSize(14).Bold();
+                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(10).AlignCenter().Text("مطلوب").FontSize(14).Bold();
+                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(10).AlignCenter().Text("نیاز و به رشد").FontSize(14).Bold();
                                         });
 
                                         string[] criteria = new[]
@@ -334,11 +358,11 @@ WHERE
                                         {
                                             table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(10).AlignRight().Text(criteria[j]).FontSize(13);
                                             table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(10).AlignCenter()
-                                                .Text(evaluationValues[j] == "نیاز به رشد" ? "✓" : "").FontSize(13);
+                                                .Text(evaluationValues[j] == "رو به رشد" ? "✓" : "").FontSize(13);
                                             table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(10).AlignCenter()
                                                 .Text(evaluationValues[j] == "مطلوب" ? "✓" : "").FontSize(13);
                                             table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(10).AlignCenter()
-                                                .Text(evaluationValues[j] == "رو به رشد" ? "✓" : "").FontSize(13);
+                                                .Text(evaluationValues[j] == "نیاز به رشد" ? "✓" : "").FontSize(13);
                                         }
                                     });
 
@@ -465,8 +489,8 @@ WHERE
                                             .FontSize(16).ExtraBold();
                                         col.Item().AlignRight().Text($"پایه تحصیلی: {levelStudent}")
                                             .FontSize(15).ExtraBold();
-                                        col.Item().AlignRight().Text($"سال ورود: {schoolYear}")
-                                            .FontSize(15).ExtraBold();
+                                         col.Item().AlignRight().Text($"سال ورود: {FixYearOrder(schoolYear)}")
+                                        .FontSize(15).ExtraBold();
                                         col.Item().AlignRight().Text($"کارگروه: {skillNames[i]}")
                                             .FontSize(15).ExtraBold();
                                         col.Item().AlignRight().Text($"مربی: {instructorName}")
@@ -494,9 +518,9 @@ WHERE
                                             table.Header(header =>
                                             {
                                                 header.Cell().Background(Colors.Blue.Lighten4).Padding(8).AlignCenter().Text("معیار").FontSize(14).Bold();
-                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).AlignCenter().Text("نیاز به رشد").FontSize(14).Bold();
-                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).AlignCenter().Text("مطلوب").FontSize(14).Bold();
                                                 header.Cell().Background(Colors.Blue.Lighten4).Padding(8).AlignCenter().Text("رو به رشد").FontSize(14).Bold();
+                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).AlignCenter().Text("مطلوب").FontSize(14).Bold();
+                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).AlignCenter().Text("نیاز به رشد").FontSize(14).Bold();
                                             });
 
                                             string[] criteria = new[]
@@ -514,11 +538,11 @@ WHERE
                                             {
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).AlignRight().Text(criteria[j]).FontSize(13);
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).AlignCenter()
-                                                    .Text(evaluationValues[j] == "نیاز به رشد" ? "✓" : "").FontSize(13);
+                                                    .Text(evaluationValues[j] == "رو به رشد" ? "✓" : "").FontSize(13);
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).AlignCenter()
                                                     .Text(evaluationValues[j] == "مطلوب" ? "✓" : "").FontSize(13);
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).AlignCenter()
-                                                    .Text(evaluationValues[j] == "رو به رشد" ? "✓" : "").FontSize(13);
+                                                    .Text(evaluationValues[j] == "نیاز به رشد" ? "✓" : "").FontSize(13);
                                             }
                                         });
 

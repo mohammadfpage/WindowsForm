@@ -336,7 +336,7 @@ WHERE StudentId = @StudentId AND SkillGroupId = @SkillGroupId AND SkillNumber = 
                                         .FontSize(16).ExtraBold();
                                     column.Item().Text($"پایه تحصیلی: {levelStudent}")
                                         .FontSize(15).ExtraBold();
-                                    column.Item().Text($"سال ورود: {schoolYear}")
+                                    column.Item().AlignRight().Text($"سال ورود: {FixYearOrder(schoolYear)}")
                                         .FontSize(15).ExtraBold();
                                     column.Item().Text($"کارگروه: {skillNames[i]}")
                                         .FontSize(15).ExtraBold();
@@ -363,9 +363,9 @@ WHERE StudentId = @StudentId AND SkillGroupId = @SkillGroupId AND SkillNumber = 
                                         table.Header(header =>
                                         {
                                             header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("معیار").FontSize(14).Bold();
-                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("نیاز به رشد").FontSize(14).Bold();
-                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("مطلوب").FontSize(14).Bold();
                                             header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("رو به رشد").FontSize(14).Bold();
+                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("مطلوب").FontSize(14).Bold();
+                                            header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("نیاز به رشد").FontSize(14).Bold();
                                         });
                                         string[] criteria = new[]
                                         {
@@ -380,9 +380,9 @@ WHERE StudentId = @StudentId AND SkillGroupId = @SkillGroupId AND SkillNumber = 
                                         for (int j = 0; j < criteria.Length; j++)
                                         {
                                             table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(criteria[j]).FontSize(13);
-                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(evaluationValues[j] == "نیاز به رشد" ? "✓" : "").FontSize(13).AlignCenter();
-                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(evaluationValues[j] == "مطلوب" ? "✓" : "").FontSize(13).AlignCenter();
                                             table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(evaluationValues[j] == "رو به رشد" ? "✓" : "").FontSize(13).AlignCenter();
+                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(evaluationValues[j] == "مطلوب" ? "✓" : "").FontSize(13).AlignCenter();
+                                            table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(evaluationValues[j] == "نیاز به رشد" ? "✓" : "").FontSize(13).AlignCenter();
                                         }
                                     });
                                     column.Item().PaddingTop(8).Text("توضیح عملکرد دانش‌آموز در کارگروه مربوطه:")
@@ -476,7 +476,6 @@ WHERE StudentId = @StudentId AND SkillGroupId = @SkillGroupId AND SkillNumber = 
             public string SkillName { get; set; }
             public string InstructorName { get; set; }
         }
-
         public List<SkillInstructor> GetStudentSkillInstructors(int studentId)
         {
             var result = new List<SkillInstructor>();
@@ -530,6 +529,26 @@ WHERE s.StudentId = @StudentId";
                 }
             }
             return result;
+        }
+        string FixYearOrder(string input)
+        {
+            var parts = input.Split('-');
+
+            if (parts.Length == 2)
+            {
+                var from = parts[0].Trim();
+                var to = parts[1].Trim();
+
+                if (int.TryParse(from, out int fromYear) && int.TryParse(to, out int toYear))
+                {
+                    if (fromYear > toYear)
+                        return $"{from} - {to}";
+                }
+
+                return $"{to} - {from}";
+            }
+
+            return input;
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -632,8 +651,8 @@ WHERE s.StudentId = @StudentId";
                                             .FontSize(16).ExtraBold();
                                         column.Item().Text($"پایه تحصیلی: {levelStudent}")
                                             .FontSize(15).ExtraBold();
-                                        column.Item().Text($"سال ورود: {schoolYear}")
-                                            .FontSize(15).ExtraBold();
+                                        column.Item().AlignRight().Text($"سال ورود: {FixYearOrder(schoolYear)}")
+                                        .FontSize(15).ExtraBold();
                                         column.Item().Text($"کارگروه: {skillNames[i]}")
                                             .FontSize(15).ExtraBold();
                                         column.Item().Text($"نام مربی: {instructorName}")
@@ -659,9 +678,9 @@ WHERE s.StudentId = @StudentId";
                                             table.Header(header =>
                                             {
                                                 header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("معیار").FontSize(14).Bold();
-                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("نیاز به رشد").FontSize(14).Bold();
-                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("مطلوب").FontSize(14).Bold();
                                                 header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("رو به رشد").FontSize(14).Bold();
+                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("مطلوب").FontSize(14).Bold();
+                                                header.Cell().Background(Colors.Blue.Lighten4).Padding(8).Text("نیاز به رشد").FontSize(14).Bold();
                                             });
                                             string[] criteria = new[]
                                             {
@@ -676,9 +695,9 @@ WHERE s.StudentId = @StudentId";
                                             for (int j = 0; j < criteria.Length; j++)
                                             {
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(criteria[j]).FontSize(13);
-                                                table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(evaluationValues[j] == "نیاز به رشد" ? "✓" : "").FontSize(13).AlignCenter();
-                                                table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(evaluationValues[j] == "مطلوب" ? "✓" : "").FontSize(13).AlignCenter();
                                                 table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(evaluationValues[j] == "رو به رشد" ? "✓" : "").FontSize(13).AlignCenter();
+                                                table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(evaluationValues[j] == "مطلوب" ? "✓" : "").FontSize(13).AlignCenter();
+                                                table.Cell().Border(0.5f).BorderColor(Colors.Grey.Medium).Padding(8).Text(evaluationValues[j] == "نیاز به رشد" ? "✓" : "").FontSize(13).AlignCenter();
                                             }
                                         });
                                         column.Item().PaddingTop(8).Text("توضیح عملکرد دانش‌آموز در کارگروه مربوطه:")
